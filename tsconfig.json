@@ -1,6 +1,23 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "jsx": "react-native",
+    "module": "commonjs",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "@components": ["./src/Components/index.ts"],
+      "@components/*": ["./src/Components/*"],
+      "@screens": ["./src/Screens/index.ts"],
+      "@screens/*": ["./src/Screens"],
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strict": true
-  }
+  },
 }

@@ -7,7 +7,7 @@ interface CustomTextStyle extends TextStyle {
 }
 
 interface CustomTextProps extends TextProps {
-  style: CustomTextStyle;
+  style?: CustomTextStyle;
 }
 
 function Text(props: CustomTextProps) {

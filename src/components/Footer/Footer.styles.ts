@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Quattrocento-Bold',
     fontSize: 14,
     letterSpacing: 2
+  },
+  fontSmall: {
+    fontFamily: 'Quattrocento-Bold',
+    fontSize: 10,
+    letterSpacing: 2
   }
 });
 

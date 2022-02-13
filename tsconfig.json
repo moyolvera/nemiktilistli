@@ -13,8 +13,10 @@
     "paths": {
       "@components": ["./src/components/index.ts"],
       "@components/*": ["./src/components/*"],
+      "@modals": ["./src/modals/index.ts"],
+      "@modals/*": ["./src/modals/*"],
       "@screens": ["./src/screens/index.ts"],
-      "@screens/*": ["./src/screens"],
+      "@screens/*": ["./src/screens/*"],
       "@utils/*": ["./src/utils/*"],
     },
     "resolveJsonModule": true,

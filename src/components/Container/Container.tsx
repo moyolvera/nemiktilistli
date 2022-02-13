@@ -1,24 +1,10 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import styles from './Container.styles';
 
 interface ContainerProps {
   children: React.ReactNode;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    width: '100%'
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#f1ffdd',
-    alignSelf: 'center',
-    maxWidth: 800,
-    minWidth: 500
-  }
-});
 
 function Container({ children }: ContainerProps) {
   return (

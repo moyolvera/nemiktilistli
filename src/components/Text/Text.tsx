@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text as RNText, TextProps, TextStyle } from 'react-native';
 
 interface CustomTextStyle extends TextStyle {
-  fontFamily?: keyof FontsInstalled;
+  fontFamily?: keyof FontsInstalled | string;
 }
 
 interface CustomTextProps extends TextProps {

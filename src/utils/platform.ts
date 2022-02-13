@@ -1,7 +1,9 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 function isWeb() {
   return Platform.OS === 'web';
 }
 
-export { isWeb };
+const windowDimensions = Dimensions.get('window');
+
+export { isWeb, windowDimensions };

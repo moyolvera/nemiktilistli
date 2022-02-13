@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { Container, Header, Footer, Locations } from '@components';
 import { Itinerary, Menu } from '@modals';
-import { ScreenNavigationProp } from '../../Navigator';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNavigationProp } from 'src/Navigator';
 
 interface HomeProps {}
 
 function HomeScreen({}: HomeProps) {
   const { navigate } = useNavigation<ScreenNavigationProp>();
+
   const [showItinerary, setShowItinerary] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
 
@@ -20,12 +21,20 @@ function HomeScreen({}: HomeProps) {
     setShowMenu(!showMenu);
   }
 
+  function toggleInfo() {
+    navigate('Details');
+  }
+
   return (
     <Container>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Header guest="Don Fiscal" />
         <Locations />
-        <Footer openItinerary={toggleItinerary} openMenu={toggleMenu} />
+        <Footer
+          openItinerary={toggleItinerary}
+          openMenu={toggleMenu}
+          openInfo={toggleInfo}
+        />
       </ScrollView>
       <Itinerary visible={showItinerary} closeModal={toggleItinerary} />
       <Menu visible={showMenu} closeModal={toggleMenu} />

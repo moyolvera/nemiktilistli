@@ -21,6 +21,16 @@ function Header({ guest }: HeaderProps) {
       <Text style={styles.date}>20 de Mayo de 2022</Text>
       <Text style={styles.separator}>/</Text>
       <Timer />
+      <Text
+        style={{
+          fontFamily: 'Quattrocento-Regular',
+          fontSize: 12,
+          marginTop: 10,
+          textAlign: 'center',
+          lineHeight: 10
+        }}>
+        {`Confirmar Asistencia`}
+      </Text>
     </ImageBackground>
   );
 }

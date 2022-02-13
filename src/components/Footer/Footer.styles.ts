@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 6,
     width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 20
   },
   font: {
     fontFamily: 'Quattrocento-Bold',

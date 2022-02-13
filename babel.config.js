@@ -1,19 +1,20 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
+    presets: ['babel-preset-expo'],
     plugins: [
       [
-        "module-resolver",
+        'module-resolver',
         {
-          root: ["./src"],
+          root: ['./src'],
           alias: {
-            "@components": "./src/components",
-            "@screens": "./src/screens",
+            '@components': './src/components',
+            '@screens': './src/screens',
+            '@utils': './src/utils'
           },
-          extensions: [".ts", ".tsx", "web.ts", ".web.tsx"],
-        },
-      ],
-    ],
+          extensions: ['.ts', '.tsx', 'web.ts', '.web.tsx']
+        }
+      ]
+    ]
   };
 };

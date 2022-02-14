@@ -9,13 +9,13 @@ import styles from './Details.styles';
 interface DetailsProps {}
 
 function DetailsScreen({}: DetailsProps) {
-  const { navigate } = useNavigation<ScreenNavigationProp>();
+  const { goBack } = useNavigation<ScreenNavigationProp>();
 
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          <TouchableOpacity onPress={() => navigate('Home')}>
+          <TouchableOpacity onPress={goBack}>
             <Feather name="chevron-left" size={26} color="#000" />
           </TouchableOpacity>
           <Text style={styles.title}>Informacion General</Text>

@@ -7,7 +7,7 @@ import {
 import { DetailsScreen, HomeScreen } from '@screens';
 
 export type RootStackParamList = {
-  Home: undefined;
+  Home?: { token: string };
   Details: undefined;
 };
 
@@ -18,9 +18,19 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const SCREEN_OPTIONS = { headerShown: false };
 
+const linking = {
+  prefixes: [],
+  config: {
+    screens: {
+      Home: 'invitation/:token?',
+      Details: 'details'
+    }
+  }
+};
+
 function Navigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />

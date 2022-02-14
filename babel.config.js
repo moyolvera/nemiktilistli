@@ -11,7 +11,9 @@ module.exports = function (api) {
             '@components': './src/components',
             '@modals': './src/modals',
             '@screens': './src/screens',
-            '@utils': './src/utils'
+            '@utils': './src/utils',
+            '@hooks': './src/hooks',
+            '@actions': './src/actions'
           },
           extensions: ['.ts', '.tsx', 'web.ts', '.web.tsx']
         }

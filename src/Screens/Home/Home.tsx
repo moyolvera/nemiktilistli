@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { Container, Header, Footer, Locations } from '@components';
-import { Itinerary, Menu } from '@modals';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList, ScreenNavigationProp } from 'src/Navigator';
+import { Container, Header, Footer, Locations } from '@components';
+import { Itinerary, Menu } from '@modals';
+import { useLogScreen } from '@hooks';
+import { people } from '@actions';
+import { PeopleEntry } from '@actions/people';
 
 interface HomeProps {}
 
@@ -13,6 +16,9 @@ function HomeScreen({}: HomeProps) {
 
   const [showItinerary, setShowItinerary] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
+  const [peopleData, setPeopleData] = React.useState<PeopleEntry>();
+
+  useLogScreen({ screenName: 'Home' });
 
   function toggleItinerary() {
     setShowItinerary(!showItinerary);
@@ -26,12 +32,23 @@ function HomeScreen({}: HomeProps) {
     navigate('Details');
   }
 
-  // console.log(params);
+  async function loadUserData() {
+    if (params?.token) {
+      const data = await people.getPeopleEntry(params.token);
+      if (data) {
+        setPeopleData(data);
+      }
+    }
+  }
+
+  React.useEffect(() => {
+    loadUserData();
+  }, []);
 
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header guest="Don Perignon" />
+        <Header guest={peopleData} />
         <Locations />
         <Footer
           openItinerary={toggleItinerary}

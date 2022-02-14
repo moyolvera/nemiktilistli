@@ -52,15 +52,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginBottom: 0
   },
-  button: {
+  buttonShadow: {
     shadowColor: '#6060a0',
     shadowOffset: {
       width: 0,
       height: 2
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
+    shadowRadius: 3.84
+  },
+  button: {
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
@@ -77,6 +78,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 10
+  },
+  loading: {
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

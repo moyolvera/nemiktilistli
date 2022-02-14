@@ -1,12 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  separate: {
+    marginBottom: 20
+  },
   wrapper: {
     flexDirection: 'row',
     marginTop: 6,
     width: '100%',
-    justifyContent: 'center',
-    marginBottom: 20
+    justifyContent: 'center'
   },
   font: {
     fontFamily: 'Quattrocento-Bold',

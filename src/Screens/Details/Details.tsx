@@ -23,8 +23,8 @@ function DetailsScreen({}: DetailsProps) {
           <Text style={styles.subtitle}>CONFIRMAR ASISTENCIA</Text>
           <Text style={styles.info}>
             Favor de confirmar su asistencia o no asistencia a mas tardar el dia
-            15 de abril de 2022 para elaborar sus pases. Si no se confirma el
-            pase sera reasignado y entregado a otra persona
+            1 de abril de 2022 para elaborar reservar su lugar. Si no se
+            confirma el lugar sera reasignado y entregado a otra persona
           </Text>
           <Text style={styles.info}>
             Los asientos se reservan y asignan por persona, por lo que si

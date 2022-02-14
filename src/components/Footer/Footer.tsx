@@ -11,7 +11,7 @@ interface FooterProps {
 
 function Footer({ openItinerary, openMenu, openInfo }: FooterProps) {
   return (
-    <>
+    <View style={styles.separate}>
       <View style={styles.wrapper}>
         <Text onPress={openItinerary} style={styles.font}>
           ITINERARIO |
@@ -26,7 +26,7 @@ function Footer({ openItinerary, openMenu, openInfo }: FooterProps) {
           onPress={openInfo}
           style={styles.fontSmall}>{` NO NIÑOS | ETIQUETA `}</Text>
       </View>
-    </>
+    </View>
   );
 }
 

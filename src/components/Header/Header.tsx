@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, Timer } from '@components';
+import { Feather } from '@expo/vector-icons';
 import styles from './Header.styles';
 
 interface HeaderProps {
@@ -21,16 +22,10 @@ function Header({ guest }: HeaderProps) {
       <Text style={styles.date}>20 de Mayo de 2022</Text>
       <Text style={styles.separator}>/</Text>
       <Timer />
-      <Text
-        style={{
-          fontFamily: 'Quattrocento-Regular',
-          fontSize: 12,
-          marginTop: 10,
-          textAlign: 'center',
-          lineHeight: 10
-        }}>
-        {`Confirmar Asistencia`}
-      </Text>
+      <TouchableOpacity style={styles.button}>
+        <Feather name="calendar" size={12} />
+        <Text style={styles.label}>Confirmar asistencia ahora</Text>
+      </TouchableOpacity>
     </ImageBackground>
   );
 }

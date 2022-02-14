@@ -51,6 +51,31 @@ const styles = StyleSheet.create({
     fontFamily: 'Quattrocento-Regular',
     fontSize: 10,
     marginBottom: 0
+  },
+  button: {
+    shadowColor: '#6060a0',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    elevation: 5,
+    flexDirection: 'row',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  label: {
+    paddingLeft: 5,
+    fontFamily: 'Quattrocento-Regular',
+    fontSize: 12,
+    textAlign: 'center',
+    lineHeight: 10
   }
 });
 

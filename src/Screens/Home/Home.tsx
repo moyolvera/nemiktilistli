@@ -28,7 +28,7 @@ function HomeScreen({}: HomeProps) {
   return (
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header guest="Don Fiscal" />
+        <Header guest="Don Perignon" />
         <Locations />
         <Footer
           openItinerary={toggleItinerary}

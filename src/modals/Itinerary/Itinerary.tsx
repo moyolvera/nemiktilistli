@@ -18,9 +18,6 @@ function Itinerary({ visible, closeModal }: ItineraryProps) {
       onRequestClose={closeModal}>
       <View style={styles.wrapper}>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.close} onPress={closeModal}>
-            <Feather name="x" size={22} color="#7882a4" />
-          </TouchableOpacity>
           <Text style={styles.title}>Itinerario</Text>
           <View style={styles.rowWrapper}>
             <View style={styles.iconWrapper}>
@@ -52,6 +49,9 @@ function Itinerary({ visible, closeModal }: ItineraryProps) {
             </View>
           </View>
         </View>
+        <TouchableOpacity style={styles.close} onPress={closeModal}>
+          <Feather name="x" size={22} color="#fff" />
+        </TouchableOpacity>
       </View>
     </Modal>
   );

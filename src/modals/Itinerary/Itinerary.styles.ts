@@ -16,13 +16,18 @@ const styles = StyleSheet.create({
     padding: 24
   },
   close: {
-    position: 'absolute',
-    top: 14,
-    right: 14
+    top: 20,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   title: {
     fontFamily: 'GreatVibes-Regular',
-    fontSize: 34
+    fontSize: 34,
+    alignSelf: 'center'
   },
   rowWrapper: {
     flexDirection: 'row',

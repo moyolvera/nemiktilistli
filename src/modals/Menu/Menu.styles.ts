@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   close: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
-    zIndex: 2,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    padding: 4,
-    borderRadius: 50
+    top: 20,
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   cover: {
     width: 250,
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'GreatVibes-Regular',
-    fontSize: 34
+    fontSize: 34,
+    alignSelf: 'center'
   },
   rowWrapper: {
     flexDirection: 'row',

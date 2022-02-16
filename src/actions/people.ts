@@ -1,8 +1,9 @@
-import { getFirestore, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDoc, doc, updateDoc } from 'firebase/firestore';
 
 interface PeopleEntryResponse {
   answered: boolean;
   attending: boolean;
+  message: string;
   name: string;
   phone: string;
   quantity: number;
@@ -25,4 +26,21 @@ async function getPeopleEntry(token: string) {
   return undefined;
 }
 
-export { getPeopleEntry };
+async function updatePeopleEntry(
+  guest: Pick<PeopleEntry, 'attending' | 'message' | 'token'>
+) {
+  const firestore = getFirestore();
+
+  const docRef = doc(firestore, 'people', guest.token);
+  try {
+    await updateDoc(docRef, {
+      answered: true,
+      attending: guest.attending,
+      message: guest.message
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { getPeopleEntry, updatePeopleEntry };

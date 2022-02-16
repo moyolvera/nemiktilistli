@@ -24,9 +24,6 @@ function Menu({ visible, closeModal }: MenuProps) {
       onRequestClose={closeModal}>
       <View style={styles.wrapper}>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.close} onPress={closeModal}>
-            <Feather name="x" size={18} color="#fff" />
-          </TouchableOpacity>
           <ImageBackground
             source={require('../../../assets/images/menu.jpeg')}
             resizeMode="cover"
@@ -74,6 +71,9 @@ function Menu({ visible, closeModal }: MenuProps) {
             </TouchableOpacity>
           </LinearGradient>
         </View>
+        <TouchableOpacity style={styles.close} onPress={closeModal}>
+          <Feather name="x" size={18} color="#fff" />
+        </TouchableOpacity>
       </View>
     </Modal>
   );

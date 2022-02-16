@@ -1,16 +1,7 @@
-import { FontsInstalled } from '@utils/fonts';
 import * as React from 'react';
-import { Text as RNText, TextProps, TextStyle } from 'react-native';
+import { Text as RNText, TextProps } from 'react-native';
 
-interface CustomTextStyle extends TextStyle {
-  fontFamily?: keyof FontsInstalled | string;
-}
-
-interface CustomTextProps extends TextProps {
-  style?: CustomTextStyle;
-}
-
-function Text(props: CustomTextProps) {
+function Text(props: TextProps) {
   return <RNText {...props} />;
 }
 

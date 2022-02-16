@@ -1,3 +1,4 @@
+import CheckBox from './CheckBox/CheckBox';
 import Container from './Container/Container';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
@@ -6,4 +7,13 @@ import SplashScreen from './SplashScreen/SplashScreen';
 import Text from './Text/Text';
 import Timer from './Timer/Timer';
 
-export { Container, Footer, Header, Locations, SplashScreen, Text, Timer };
+export {
+  CheckBox,
+  Container,
+  Footer,
+  Header,
+  Locations,
+  SplashScreen,
+  Text,
+  Timer
+};

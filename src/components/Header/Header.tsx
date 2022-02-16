@@ -13,9 +13,18 @@ import styles from './Header.styles';
 
 interface HeaderProps {
   guest?: PeopleEntry;
+  toggleAttending: () => void;
 }
 
-function Header({ guest }: HeaderProps) {
+function Header({ guest, toggleAttending }: HeaderProps) {
+  const calendarColor = React.useMemo(() => {
+    if (!guest?.answered) {
+      return '#000';
+    }
+
+    return guest.attending ? '#00c853' : '#ff3d00';
+  }, [guest]);
+
   return (
     <ImageBackground
       source={require('../../../assets/images/cover.png')}
@@ -30,8 +39,10 @@ function Header({ guest }: HeaderProps) {
       <Text style={styles.separator}>/</Text>
       <Timer />
       {guest ? (
-        <TouchableOpacity style={[styles.buttonShadow, styles.button]}>
-          <Feather name="calendar" size={12} />
+        <TouchableOpacity
+          style={[styles.buttonShadow, styles.button]}
+          onPress={toggleAttending}>
+          <Feather name="calendar" size={12} color={calendarColor} />
           <Text style={styles.label}>
             {guest.answered
               ? 'Cambiar respuesta'

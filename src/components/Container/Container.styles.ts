@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9fb',
     alignSelf: 'center',
     maxWidth: 500,
-    minWidth: 400
+    minWidth: 380
   }
 });
 

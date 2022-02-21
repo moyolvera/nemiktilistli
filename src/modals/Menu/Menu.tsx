@@ -6,7 +6,7 @@ import {
   MaterialCommunityIcons
 } from '@expo/vector-icons';
 import { View, Modal, TouchableOpacity, ImageBackground } from 'react-native';
-import { Text } from '@components/index';
+import { Text } from '@components';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './Menu.styles';
 

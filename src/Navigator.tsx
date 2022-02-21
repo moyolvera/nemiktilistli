@@ -4,7 +4,7 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp
 } from '@react-navigation/native-stack';
-import { DetailsScreen, HomeScreen } from '@screens/index';
+import { DetailsScreen, HomeScreen } from '@screens';
 
 export type RootStackParamList = {
   Home?: { token: string };

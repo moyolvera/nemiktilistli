@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { Text, Timer } from '@components/index';
+import { Text, Timer } from '@components';
 import { Feather } from '@expo/vector-icons';
 import { PeopleEntry } from '@actions/people';
 

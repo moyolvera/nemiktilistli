@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import { Container, Text } from '@components/index';
-import { useLogScreen } from '@hooks/index';
+import { Container, Text } from '@components';
+import { useLogScreen } from '@hooks';
 import { ScreenNavigationProp } from 'src/Navigator';
 import styles from './Details.styles';
 

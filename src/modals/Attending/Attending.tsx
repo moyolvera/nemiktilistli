@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, Modal, TouchableOpacity, TextInput } from 'react-native';
-import { CheckBox, Text } from '@components/index';
+import { CheckBox, Text } from '@components';
 import { Feather } from '@expo/vector-icons';
 import { PeopleEntry, updatePeopleEntry } from '@actions/people';
 import styles from './Attending.styles';
-import { ThankYou } from '@modals/index';
+import { ThankYou } from '@modals';
 import { AnimatePresence } from 'moti';
 
 interface AttendingProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text } from '@components/index';
+import { Text } from '@components';
 import styles from './Footer.styles';
 
 interface FooterProps {

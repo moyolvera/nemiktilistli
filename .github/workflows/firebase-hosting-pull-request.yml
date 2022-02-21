@@ -26,8 +26,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build app
-        run: 'expo build:web'
-
       - name: Typescript check
         run: 'yarn tsc'
+
+      - name: Build app
+        run: 'expo build:web'

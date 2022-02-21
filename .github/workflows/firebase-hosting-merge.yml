@@ -28,6 +28,12 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Typescript check
+        run: 'yarn tsc'
+
+      - name: Optimize assets
+        run: 'npx expo-optimize'
+
       - name: Build app
         run: 'expo build:web'
 

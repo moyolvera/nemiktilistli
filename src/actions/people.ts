@@ -3,6 +3,7 @@ import { getFirestore, getDoc, doc, updateDoc } from 'firebase/firestore';
 interface PeopleEntryResponse {
   answered: boolean;
   attending: boolean;
+  sensible: boolean;
   message: string;
   name: string;
   phone: string;

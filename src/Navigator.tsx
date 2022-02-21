@@ -8,7 +8,7 @@ import { DetailsScreen, HomeScreen, NotFoundScreen } from '@screens';
 
 export type RootStackParamList = {
   Home?: { token: string };
-  Details: undefined;
+  Details: { isSensible?: boolean };
   NotFound: undefined;
 };
 

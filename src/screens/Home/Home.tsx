@@ -34,7 +34,7 @@ function HomeScreen({}: HomeProps) {
   }
 
   function toggleInfo() {
-    navigate('Details');
+    navigate('Details', { isSensible: peopleData?.sensible });
   }
 
   async function loadUserData() {

@@ -10,11 +10,9 @@ import styles from './Details.styles';
 interface DetailsProps {}
 
 function DetailsScreen({}: DetailsProps) {
-  const {
-    params: { isSensible }
-  } = useRoute<RouteProp<RootStackParamList, 'Details'>>();
-
   const { canGoBack, goBack, navigate } = useNavigation<ScreenNavigationProp>();
+  const { params: { isSensible } = {} } =
+    useRoute<RouteProp<RootStackParamList, 'Details'>>();
   useLogScreen({ screenName: 'Details' });
 
   function handleGoBack() {

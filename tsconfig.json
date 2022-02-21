@@ -4,7 +4,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "commonjs",

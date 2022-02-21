@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Image, TouchableOpacity, Linking } from 'react-native';
-import { Text } from '@components';
+import { Text } from '@components/index';
 import styles from './Locations.style';
 
 interface LocationsProps {}

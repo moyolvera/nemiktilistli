@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { View, Modal, TouchableOpacity } from 'react-native';
-import { Text } from '@components';
+import { Text } from '@components/index';
 import styles from './Itinerary.styles';
 
 interface ItineraryProps {

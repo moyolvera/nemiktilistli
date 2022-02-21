@@ -2,10 +2,10 @@ import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList, ScreenNavigationProp } from 'src/Navigator';
-import { Container, Header, Footer, Locations } from '@components';
-import { Attending, Itinerary, Menu } from '@modals';
-import { useLogScreen } from '@hooks';
-import { people } from '@actions';
+import { Container, Header, Footer, Locations } from '@components/index';
+import { Attending, Itinerary, Menu } from '@modals/index';
+import { useLogScreen } from '@hooks/index';
+import { people } from '@actions/index';
 import { PeopleEntry } from '@actions/people';
 
 interface HomeProps {}

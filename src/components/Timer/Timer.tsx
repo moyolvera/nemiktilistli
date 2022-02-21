@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from '@components';
+import { Text } from '@components/index';
 import styles from './Timer.styles';
 
 interface TimerProps {}

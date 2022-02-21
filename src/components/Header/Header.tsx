@@ -44,9 +44,11 @@ function Header({ guest, toggleAttending }: HeaderProps) {
           onPress={toggleAttending}>
           <Feather name="calendar" size={12} color={calendarColor} />
           <Text style={styles.label}>
-            {guest.answered
-              ? 'Cambiar respuesta'
-              : 'Confirmar asistencia ahora'}
+            {!guest.answered ? (
+              'Responder invitacion'
+            ) : (
+              <>{guest.attending ? 'Ahi nos vemos' : 'No podre ir'}</>
+            )}
           </Text>
         </TouchableOpacity>
       ) : (

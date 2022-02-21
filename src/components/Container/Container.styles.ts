@@ -1,4 +1,6 @@
+import { windowDimensions } from '@utils/platform';
 import { StyleSheet } from 'react-native';
+const { width: WINDOW_WIDTH } = windowDimensions;
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +13,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9fb',
     alignSelf: 'center',
     maxWidth: 500,
-    minWidth: 380
+    minWidth: 380,
+    width: WINDOW_WIDTH < 501 ? WINDOW_WIDTH : 380
   }
 });
 

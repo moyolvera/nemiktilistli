@@ -65,13 +65,16 @@ function Attending({ visible, closeModal, guest }: AttendingProps) {
         </AnimatePresence>
         <View style={styles.container}>
           <Text style={styles.title}>Asistencia</Text>
+          <Text style={[styles.detail, styles.detailBold]}>
+            Una vez que confirmes contamos contigo para no perder ningun asiento
+          </Text>
           <CheckBox
-            label={`Confirmar asistencia - ${guest.quantity} persona(s)`}
+            label="Si, si ire"
             checked={attending}
             onCheck={setYesAttending}
           />
           <CheckBox
-            label="No sera posible acompañarlos"
+            label="No, no ire"
             checked={!attending}
             onCheck={setNotAttending}
           />
@@ -90,9 +93,6 @@ function Attending({ visible, closeModal, guest }: AttendingProps) {
           <Text style={styles.detail}>
             Los asientos se reservan y asignan por persona. Contamos contigo
             para no perder ningun asiento.
-          </Text>
-          <Text style={[styles.detail, styles.detailBold]}>
-            En caso de que no todos vayan favor de agregarlo en el mensaje
           </Text>
           <View style={styles.separator} />
           <TouchableOpacity

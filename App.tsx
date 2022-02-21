@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { useFonts } from 'expo-font';
-import { SplashScreen } from '@components';
+import { SplashScreen, LinkSharingPreview } from '@components';
 import customFonts from '@utils/fonts';
 import FIREBASE_CONFIG from '@utils/firebase';
 import Navigator from './src/Navigator';
@@ -17,6 +17,7 @@ export default function App() {
     <SplashScreen />
   ) : (
     <View style={styles.container}>
+      <LinkSharingPreview />
       <StatusBar style="auto" />
       <Navigator />
     </View>

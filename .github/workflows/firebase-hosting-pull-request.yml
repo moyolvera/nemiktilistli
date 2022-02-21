@@ -29,9 +29,5 @@ jobs:
       - name: Build app
         run: 'expo build:web'
 
-      - name: Deploy app
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEMIKTILISTLI }}'
-          projectId: nemiktilistli
+      - name: Typescript check
+        run: 'yarn tsc'

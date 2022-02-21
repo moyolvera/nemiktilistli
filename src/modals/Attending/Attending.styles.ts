@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Quattrocento-Regular',
     fontSize: 12,
     textAlign: 'justify',
-    color: '#6e6e6e'
+    color: '#212121'
   },
   detailBold: {
     marginTop: 6,
-    fontFamily: 'Quattrocento-Bold'
+    fontFamily: 'Quattrocento-Bold',
+    textAlign: 'center'
   },
   buttonShadow: {
     shadowColor: '#6060a0',

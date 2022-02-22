@@ -15,7 +15,7 @@ import { PeopleEntry } from '@actions/people';
 import { useToast } from 'react-native-toast-notifications';
 
 const MESSAGE =
-  'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia.';
+  'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia en el siguiente link:';
 
 interface ManageProps {}
 
@@ -33,7 +33,7 @@ function ManageScreen({}: ManageProps) {
   }
 
   function handleOnPress(data: PeopleEntry) {
-    const compoundMessage = `Hola ${data.name}, ${MESSAGE}`;
+    const compoundMessage = `Hola ${data.name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${data.token}`;
     Linking.openURL(
       `https://api.whatsapp.com/send?phone=${data.phone}&text=${compoundMessage}`
     );

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    backgroundColor: '#EFEFF5',
+    backgroundColor: '#f9f9fb',
     alignSelf: 'center',
     maxWidth: 500,
     minWidth: 380,

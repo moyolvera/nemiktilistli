@@ -14,37 +14,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'Quattrocento-Bold',
     marginBottom: 16
-  },
-  person: {
-    backgroundColor: '#fff',
-    padding: 8,
-    marginBottom: 16,
-    borderRadius: 8,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#6060a0',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84
-  },
-  status: {
-    width: 35,
-    height: '100%',
-    justifyContent: 'center'
-  },
-  content: {
-    flex: 1
-  },
-  personName: {
-    fontFamily: 'Quattrocento-Bold'
-  },
-  personEmail: {
-    fontFamily: 'Nunito-Regular',
-    fontSize: 12
   }
 });
 

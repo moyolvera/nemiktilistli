@@ -4,12 +4,20 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp
 } from '@react-navigation/native-stack';
-import { DetailsScreen, HomeScreen, NotFoundScreen } from '@screens';
+import {
+  DetailsScreen,
+  HomeScreen,
+  ManageScreen,
+  NotFoundScreen,
+  PasswordScreen
+} from '@screens';
 
 export type RootStackParamList = {
   Home?: { token: string };
   Details: { isSensible?: boolean };
+  Manage: undefined;
   NotFound: undefined;
+  Password: undefined;
 };
 
 export type ScreenNavigationProp =
@@ -25,6 +33,8 @@ const linking = {
     screens: {
       Home: 'invitation/:token?',
       Details: 'details',
+      Password: 'password',
+      Manage: 'manage',
       NotFound: '*'
     }
   }
@@ -37,6 +47,8 @@ function Navigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
+        <Stack.Screen name="Password" component={PasswordScreen} />
+        <Stack.Screen name="Manage" component={ManageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

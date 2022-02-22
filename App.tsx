@@ -8,6 +8,7 @@ import customFonts from '@utils/fonts';
 import FIREBASE_CONFIG from '@utils/firebase';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { Feather } from '@expo/vector-icons';
+import ManageProvider from '@context/ManageContext';
 
 import Navigator from './src/Navigator';
 
@@ -22,12 +23,14 @@ export default function App() {
     <View style={styles.container}>
       <ToastProvider
         placement="top"
-        offset={60}
+        offset={20}
         successIcon={<Feather name="check-circle" size={18} color="#fff" />}
         dangerIcon={<Feather name="alert-circle" size={18} color="#fff" />}
         warningIcon={<Feather name="alert-triangle" size={18} color="#fff" />}>
-        <StatusBar style="auto" />
-        <Navigator />
+        <ManageProvider>
+          <StatusBar style="auto" />
+          <Navigator />
+        </ManageProvider>
       </ToastProvider>
     </View>
   );

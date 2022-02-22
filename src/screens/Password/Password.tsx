@@ -7,19 +7,22 @@ import Animated, {
   withSequence,
   withTiming
 } from 'react-native-reanimated';
+import { useToast } from 'react-native-toast-notifications';
 import { useLogScreen } from '@hooks';
+import { ManageContext } from '@context/ManageContext';
 import { getSecretEntry, SecretEntry } from '@actions/secret';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from 'src/Navigator';
 
 import styles from './Password.styles';
-import { useToast } from 'react-native-toast-notifications';
 
 interface PasswordProps {}
 
 function PasswordScreen({}: PasswordProps) {
   const { navigate } = useNavigation<ScreenNavigationProp>();
   const [secret, setSecret] = React.useState('');
+  const { canManageContext, setCanManageContext } =
+    React.useContext(ManageContext);
   const animation = useSharedValue(0);
   const toast = useToast();
 
@@ -55,7 +58,10 @@ function PasswordScreen({}: PasswordProps) {
     }
 
     toast.show('Contraseña correcta!', { type: 'success' });
-    navigate('Manage');
+
+    if (setCanManageContext) {
+      setCanManageContext(true);
+    }
   }
 
   const dotsWrapperStyles = useAnimatedStyle(
@@ -74,6 +80,12 @@ function PasswordScreen({}: PasswordProps) {
 
     getSecretEntry(secret).then(handleSecretEntryRequest, handleError);
   }, [secret]);
+
+  React.useEffect(() => {
+    if (canManageContext) {
+      navigate('Manage');
+    }
+  }, [canManageContext]);
 
   return (
     <Container>

@@ -8,12 +8,13 @@ module.exports = function (api) {
         {
           root: ['./src'],
           alias: {
+            '@actions': './src/actions',
             '@components': './src/components',
+            '@context': './src/context',
+            '@hooks': './src/hooks',
             '@modals': './src/modals',
             '@screens': './src/screens',
-            '@utils': './src/utils',
-            '@hooks': './src/hooks',
-            '@actions': './src/actions'
+            '@utils': './src/utils'
           },
           extensions: ['.ts', '.tsx', 'web.ts', '.web.tsx']
         }

@@ -1,13 +1,17 @@
-import { Container } from '@components';
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { Container } from '@components';
+
+import styles from './Manage.styles';
 
 interface ManageProps {}
 
 function ManageScreen({}: ManageProps) {
   return (
     <Container>
-      <Text>More text</Text>
+      <View style={styles.wrapper}>
+        <Text>More text</Text>
+      </View>
     </Container>
   );
 }

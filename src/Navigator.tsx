@@ -11,6 +11,7 @@ import {
   NotFoundScreen,
   PasswordScreen
 } from '@screens';
+import { ManageContext } from '@context/ManageContext';
 
 export type RootStackParamList = {
   Home?: { token: string };
@@ -41,6 +42,8 @@ const linking = {
 };
 
 function Navigator() {
+  const { canManageContext } = React.useContext(ManageContext);
+
   return (
     <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
@@ -48,7 +51,9 @@ function Navigator() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
         <Stack.Screen name="Password" component={PasswordScreen} />
-        <Stack.Screen name="Manage" component={ManageScreen} />
+        {canManageContext && (
+          <Stack.Screen name="Manage" component={ManageScreen} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

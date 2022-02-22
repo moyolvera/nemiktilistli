@@ -6,6 +6,9 @@ import { useFonts } from 'expo-font';
 import { SplashScreen } from '@components';
 import customFonts from '@utils/fonts';
 import FIREBASE_CONFIG from '@utils/firebase';
+import { ToastProvider } from 'react-native-toast-notifications';
+import { Feather } from '@expo/vector-icons';
+
 import Navigator from './src/Navigator';
 
 initializeApp(FIREBASE_CONFIG);
@@ -17,8 +20,15 @@ export default function App() {
     <SplashScreen />
   ) : (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Navigator />
+      <ToastProvider
+        placement="top"
+        offset={60}
+        successIcon={<Feather name="check-circle" size={18} color="#fff" />}
+        dangerIcon={<Feather name="alert-circle" size={18} color="#fff" />}
+        warningIcon={<Feather name="alert-triangle" size={18} color="#fff" />}>
+        <StatusBar style="auto" />
+        <Navigator />
+      </ToastProvider>
     </View>
   );
 }

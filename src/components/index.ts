@@ -1,6 +1,7 @@
 import CheckBox from './CheckBox/CheckBox';
 import Container from './Container/Container';
 import Footer from './Footer/Footer';
+import GuestItem from './GuestItem/GuestItem';
 import Header from './Header/Header';
 import LinkSharingPreview from './LinkSharingPreview/LinkSharingPreview';
 import Locations from './Locations/Locations';
@@ -15,6 +16,7 @@ export {
   CheckBox,
   Container,
   Footer,
+  GuestItem,
   Header,
   LinkSharingPreview,
   Locations,

@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Feather } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+const styles = StyleSheet.create({
+  transparency: {
+    opacity: 0.3
+  }
+});
 
 interface StatusIconProps {
   answered: boolean;
@@ -8,14 +15,35 @@ interface StatusIconProps {
 
 function StatusIcon({ answered, attending }: StatusIconProps) {
   if (!answered) {
-    return <Feather name="circle" size={26} color="#606060" />;
+    return (
+      <Ionicons
+        name="radio-button-off"
+        size={26}
+        color="#000"
+        style={styles.transparency}
+      />
+    );
   }
 
   if (attending) {
-    return <Feather name="check-circle" size={26} color="#00c853" />;
+    return (
+      <Ionicons
+        name="checkmark-circle"
+        size={26}
+        color="#00c853"
+        style={styles.transparency}
+      />
+    );
   }
 
-  return <Feather name="x-circle" size={26} color="#ff3d00" />;
+  return (
+    <Ionicons
+      name="close-circle"
+      size={26}
+      color="#ff3d00"
+      style={styles.transparency}
+    />
+  );
 }
 
 export default StatusIcon;

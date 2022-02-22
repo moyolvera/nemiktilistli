@@ -7,6 +7,7 @@ import {
 import {
   DetailsScreen,
   HomeScreen,
+  ManageScreen,
   NotFoundScreen,
   PasswordScreen
 } from '@screens';
@@ -14,6 +15,7 @@ import {
 export type RootStackParamList = {
   Home?: { token: string };
   Details: { isSensible?: boolean };
+  Manage: undefined;
   NotFound: undefined;
   Password: undefined;
 };
@@ -32,6 +34,7 @@ const linking = {
       Home: 'invitation/:token?',
       Details: 'details',
       Password: 'password',
+      Manage: 'manage',
       NotFound: '*'
     }
   }
@@ -45,6 +48,7 @@ function Navigator() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
         <Stack.Screen name="Password" component={PasswordScreen} />
+        <Stack.Screen name="Manage" component={ManageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

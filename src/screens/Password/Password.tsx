@@ -54,8 +54,8 @@ function PasswordScreen({}: PasswordProps) {
       return;
     }
 
-    // navigate('Manage');
     toast.show('Contraseña correcta!', { type: 'success' });
+    navigate('Manage');
   }
 
   const dotsWrapperStyles = useAnimatedStyle(

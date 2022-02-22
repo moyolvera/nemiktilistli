@@ -1,4 +1,14 @@
-import { getFirestore, getDoc, doc, updateDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  getDoc,
+  doc,
+  updateDoc,
+  collection,
+  query,
+  where,
+  orderBy,
+  getDocs
+} from 'firebase/firestore';
 
 interface PeopleEntryResponse {
   answered: boolean;
@@ -12,6 +22,28 @@ interface PeopleEntryResponse {
 
 export interface PeopleEntry extends PeopleEntryResponse {
   token: string;
+}
+
+async function getAllPeopleEntries() {
+  const firestore = getFirestore();
+
+  const peopleCollection = collection(firestore, 'people');
+  const peopleQuery = query(
+    peopleCollection,
+    where('name', '!=', ''),
+    orderBy('name')
+  );
+
+  const querySnapshot = await getDocs(peopleQuery);
+
+  return querySnapshot.docs.map(docSnap => {
+    const data = docSnap.data() as PeopleEntryResponse;
+    const token = docSnap.id;
+    return {
+      ...data,
+      token
+    } as PeopleEntry;
+  });
 }
 
 async function getPeopleEntry(token: string) {
@@ -44,4 +76,4 @@ async function updatePeopleEntry(
   }
 }
 
-export { getPeopleEntry, updatePeopleEntry };
+export { getAllPeopleEntries, getPeopleEntry, updatePeopleEntry };

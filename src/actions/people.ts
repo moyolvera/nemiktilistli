@@ -13,18 +13,21 @@ import {
 interface PeopleEntryResponse {
   answered: boolean;
   attending: boolean;
-  sensible: boolean;
+  isFromBride: boolean;
   message: string;
   name: string;
   phone: string;
-  quantity: number;
+  sensible: boolean;
 }
 
 export interface PeopleEntry extends PeopleEntryResponse {
   token: string;
 }
 
-async function getAllPeopleEntries() {
+type AvailableFilterKeys = 'isFromBride' | 'answered' | 'attending';
+export type FilterType = Pick<PeopleEntry, AvailableFilterKeys>;
+
+async function getAllPeopleEntries(filter?: FilterType) {
   const firestore = getFirestore();
 
   const peopleCollection = collection(firestore, 'people');
@@ -36,7 +39,7 @@ async function getAllPeopleEntries() {
 
   const querySnapshot = await getDocs(peopleQuery);
 
-  return querySnapshot.docs.map(docSnap => {
+  const records = querySnapshot.docs.map(docSnap => {
     const data = docSnap.data() as PeopleEntryResponse;
     const token = docSnap.id;
     return {
@@ -44,6 +47,17 @@ async function getAllPeopleEntries() {
       token
     } as PeopleEntry;
   });
+
+  if (filter) {
+    const keys = Object.keys(filter) as AvailableFilterKeys[];
+    return records.filter(record => {
+      return keys.every(key => {
+        return record[key] === filter[key];
+      });
+    });
+  }
+
+  return records;
 }
 
 async function getPeopleEntry(token: string) {

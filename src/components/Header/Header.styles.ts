@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
-    height: 550,
+    height: 580,
     justifyContent: 'flex-end',
     paddingHorizontal: 30,
     paddingBottom: 8,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontFamily: 'DancingScript-Regular',
-    marginTop: 14,
+    marginTop: 8,
     fontSize: 20
   },
   separator: {
@@ -51,6 +51,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Quattrocento-Regular',
     fontSize: 10,
     marginBottom: 0
+  },
+  like: {
+    fontFamily: 'Quattrocento-Regular',
+    fontSize: 10,
+    lineHeight: 1,
+    marginTop: 8
+  },
+  goodfather: {
+    color: '#6060a0',
+    fontFamily: 'DancingScript-Bold',
+    fontSize: 20
   },
   buttonShadow: {
     shadowColor: '#6060a0',

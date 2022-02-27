@@ -8,6 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import { useToast } from 'react-native-toast-notifications';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from 'src/Navigator';
+import { RefreshControl } from 'react-native-web-refresh-control';
 
 import styles from './Manage.styles';
 
@@ -21,6 +22,8 @@ function ManageScreen({}: ManageProps) {
   const { navigate } = useNavigation<ScreenNavigationProp>();
   const [peopleData, setPeopleData] = React.useState<PeopleEntry[]>([]);
   const [selected, setSelected] = React.useState(0);
+  const [refreshing, setRefreshing] = React.useState(false);
+
   const toast = useToast();
   useLogScreen({ screenName: 'Manage' });
 
@@ -36,7 +39,8 @@ function ManageScreen({}: ManageProps) {
     people
       .getAllPeopleEntries(filter)
       .then(savePeopleData, handleError)
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => setRefreshing(false));
   }
 
   function onChangeIndex(index: number) {
@@ -57,7 +61,17 @@ function ManageScreen({}: ManageProps) {
 
   return (
     <Container>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => {
+              setRefreshing(true);
+              loadData();
+            }}
+            refreshing={refreshing}
+          />
+        }>
         <View style={styles.wrapper}>
           <Text style={styles.title}>Lista de</Text>
           <Text style={styles.postTitle}>Invitados</Text>

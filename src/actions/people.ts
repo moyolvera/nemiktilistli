@@ -18,6 +18,9 @@ interface PeopleEntryResponse {
   name: string;
   phone: string;
   sensible: boolean;
+  tutorial: boolean;
+  goodfather: string;
+  invitedOn?: number;
 }
 
 export interface PeopleEntry extends PeopleEntryResponse {
@@ -26,6 +29,22 @@ export interface PeopleEntry extends PeopleEntryResponse {
 
 type AvailableFilterKeys = 'isFromBride' | 'answered' | 'attending';
 export type FilterType = Pick<PeopleEntry, AvailableFilterKeys>;
+
+export type ImportPeopleEntry = Pick<
+  PeopleEntry,
+  'name' | 'phone' | 'tutorial' | 'goodfather'
+>;
+
+export function determineIfIsImportPeopleEntry(
+  toBeDetermined: any
+): toBeDetermined is ImportPeopleEntry {
+  return (
+    !!toBeDetermined &&
+    toBeDetermined.name &&
+    toBeDetermined.phone &&
+    toBeDetermined.tutorial !== undefined
+  );
+}
 
 async function getAllPeopleEntries(filter?: FilterType) {
   const firestore = getFirestore();
@@ -73,6 +92,21 @@ async function getPeopleEntry(token: string) {
   return undefined;
 }
 
+async function setPeopleEntryInvitedDate(
+  guest: Pick<PeopleEntry, 'invitedOn' | 'token'>
+) {
+  const firestore = getFirestore();
+
+  const docRef = doc(firestore, 'people', guest.token);
+  try {
+    await updateDoc(docRef, {
+      invitedOn: guest.invitedOn
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function updatePeopleEntry(
   guest: Pick<PeopleEntry, 'attending' | 'message' | 'token'>
 ) {
@@ -90,4 +124,9 @@ async function updatePeopleEntry(
   }
 }
 
-export { getAllPeopleEntries, getPeopleEntry, updatePeopleEntry };
+export {
+  getAllPeopleEntries,
+  getPeopleEntry,
+  updatePeopleEntry,
+  setPeopleEntryInvitedDate
+};

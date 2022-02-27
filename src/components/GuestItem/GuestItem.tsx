@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PeopleEntry } from '@actions/people';
-import { View, Text, TouchableOpacity, Linking } from 'react-native';
-import { StatusIcon } from '@components';
+import { View, TouchableOpacity, Linking } from 'react-native';
+import { StatusIcon, Text } from '@components';
 import { Feather, Ionicons } from '@expo/vector-icons';
 
 import styles from './GuestItem.styles';

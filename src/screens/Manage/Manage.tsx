@@ -1,12 +1,6 @@
 import * as React from 'react';
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import { Container, GuestItem, SwitchSelector } from '@components';
+import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Container, GuestItem, SwitchSelector, Text } from '@components';
 import { useLogScreen } from '@hooks';
 import { people } from '@actions';
 import { FilterType, PeopleEntry } from '@actions/people';

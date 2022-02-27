@@ -7,7 +7,8 @@ import {
   query,
   where,
   orderBy,
-  getDocs
+  getDocs,
+  addDoc
 } from 'firebase/firestore';
 
 interface PeopleEntryResponse {
@@ -92,6 +93,24 @@ async function getPeopleEntry(token: string) {
   return undefined;
 }
 
+async function savePeopleEntries(guests: PeopleEntry[]) {
+  const firestore = getFirestore();
+
+  try {
+    Promise.all(
+      guests.map(async data => {
+        const { token, ...props } = data;
+        return await addDoc(collection(firestore, 'people'), { ...props });
+      })
+    );
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 async function setPeopleEntryInvitedDate(
   guest: Pick<PeopleEntry, 'invitedOn' | 'token'>
 ) {
@@ -127,6 +146,7 @@ async function updatePeopleEntry(
 export {
   getAllPeopleEntries,
   getPeopleEntry,
-  updatePeopleEntry,
-  setPeopleEntryInvitedDate
+  savePeopleEntries,
+  setPeopleEntryInvitedDate,
+  updatePeopleEntry
 };

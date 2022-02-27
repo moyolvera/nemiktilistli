@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { Text } from '@components';
 import styles from './Locations.style';
 

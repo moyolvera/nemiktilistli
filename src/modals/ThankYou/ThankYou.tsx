@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Text } from '@components';
 import { Feather } from '@expo/vector-icons';
 import { MotiView } from 'moti';
 import styles from './ThankYou.styles';

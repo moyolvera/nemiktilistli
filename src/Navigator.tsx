@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native-stack';
 import {
   DetailsScreen,
+  ImportScreen,
   HomeScreen,
   ManageScreen,
   NotFoundScreen,
@@ -16,6 +17,7 @@ import { ManageContext } from '@context/ManageContext';
 export type RootStackParamList = {
   Home?: { token: string };
   Details: { isSensible?: boolean };
+  Import: undefined;
   Manage: undefined;
   NotFound: undefined;
   Password: undefined;
@@ -36,6 +38,7 @@ const linking = {
       Details: 'details',
       Password: 'password',
       Manage: 'manage',
+      Import: 'import',
       NotFound: '*'
     }
   }
@@ -52,7 +55,10 @@ function Navigator() {
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
         <Stack.Screen name="Password" component={PasswordScreen} />
         {canManageContext && (
-          <Stack.Screen name="Manage" component={ManageScreen} />
+          <>
+            <Stack.Screen name="Manage" component={ManageScreen} />
+            <Stack.Screen name="Import" component={ImportScreen} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

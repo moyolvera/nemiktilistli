@@ -9,10 +9,12 @@ import FIREBASE_CONFIG from '@utils/firebase';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { Feather } from '@expo/vector-icons';
 import ManageProvider from '@context/ManageContext';
+import { patchFlatListProps } from 'react-native-web-refresh-control';
 
 import Navigator from './src/Navigator';
 
 initializeApp(FIREBASE_CONFIG);
+patchFlatListProps();
 
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);

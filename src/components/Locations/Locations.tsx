@@ -3,13 +3,11 @@ import { View, Image, TouchableOpacity, Linking } from 'react-native';
 import { Text } from '@components';
 import styles from './Locations.style';
 
-interface LocationsProps {}
+interface LocationsProps {
+  toggleDirections: () => void;
+}
 
-function Locations({}: LocationsProps) {
-  function openTendenzaLocation() {
-    Linking.openURL('https://goo.gl/maps/YeEawfbEFTJ3eZ7V7');
-  }
-
+function Locations({ toggleDirections }: LocationsProps) {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.label}>CEREMONIA</Text>
@@ -21,7 +19,7 @@ function Locations({}: LocationsProps) {
       />
       <Text style={styles.label}>RECEPCION</Text>
       <Text style={styles.locationName}>TENDENZA</Text>
-      <TouchableOpacity onPress={openTendenzaLocation}>
+      <TouchableOpacity onPress={toggleDirections}>
         <Image
           source={require('../../../assets/images/location.png')}
           style={styles.pin}

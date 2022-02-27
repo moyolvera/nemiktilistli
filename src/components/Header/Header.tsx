@@ -36,8 +36,17 @@ function Header({ guest, toggleAttending }: HeaderProps) {
       <Text style={styles.inviteIntro}>Tenemos el honor de invitarle</Text>
       <Text style={styles.inviteIntro2}>a celebrar nuestra boda el dia</Text>
       <Text style={styles.date}>20 de Mayo de 2022</Text>
-      <Text style={styles.separator}>/</Text>
-      <Timer />
+      {!!guest?.goodfather ? (
+        <>
+          <Text style={styles.like}>como</Text>
+          <Text style={styles.goodfather}>{guest?.goodfather}</Text>
+        </>
+      ) : (
+        <>
+          <Timer />
+        </>
+      )}
+
       {guest ? (
         <TouchableOpacity
           style={[styles.buttonShadow, styles.button]}

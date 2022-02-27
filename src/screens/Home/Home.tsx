@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList, ScreenNavigationProp } from 'src/Navigator';
 import { Container, Header, Footer, Locations } from '@components';
-import { Attending, Itinerary, Menu } from '@modals';
+import { Attending, Directions, Itinerary, Menu } from '@modals';
 import { useLogScreen } from '@hooks';
 import { people } from '@actions';
 import { PeopleEntry } from '@actions/people';
@@ -17,12 +17,17 @@ function HomeScreen({}: HomeProps) {
   const [showItinerary, setShowItinerary] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
   const [showAttending, setShowAttending] = React.useState(false);
+  const [showDirections, setShowDirections] = React.useState(false);
   const [peopleData, setPeopleData] = React.useState<PeopleEntry>();
 
   useLogScreen({ screenName: 'Home' });
 
   function toggleItinerary() {
     setShowItinerary(!showItinerary);
+  }
+
+  function toggleDirections() {
+    setShowDirections(!showDirections);
   }
 
   function toggleMenu() {
@@ -54,7 +59,7 @@ function HomeScreen({}: HomeProps) {
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header guest={peopleData} toggleAttending={toggleAttending} />
-        <Locations />
+        <Locations toggleDirections={toggleDirections} />
         <Footer
           openItinerary={toggleItinerary}
           openMenu={toggleMenu}
@@ -63,6 +68,7 @@ function HomeScreen({}: HomeProps) {
       </ScrollView>
       <Itinerary visible={showItinerary} closeModal={toggleItinerary} />
       <Menu visible={showMenu} closeModal={toggleMenu} />
+      <Directions visible={showDirections} closeModal={toggleDirections} />
       {peopleData && (
         <Attending
           visible={showAttending}

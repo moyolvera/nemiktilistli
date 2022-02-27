@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Image, Text, View } from 'react-native';
-import { Container } from '@components';
+import { Image, View } from 'react-native';
+import { Container, Text } from '@components';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from 'src/Navigator';
 import useLogScreen from '@hooks/useLogScreen';

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Image, Text, View } from 'react-native';
-import { Container, PasscodeDot, Secret } from '@components';
+import { Image, View } from 'react-native';
+import { Container, PasscodeDot, Secret, Text } from '@components';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,

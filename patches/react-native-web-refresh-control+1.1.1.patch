@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-web-refresh-control/src/index.js b/node_modules/react-native-web-refresh-control/src/index.js
+index 7449fe4..72b8608 100644
+--- a/node_modules/react-native-web-refresh-control/src/index.js
++++ b/node_modules/react-native-web-refresh-control/src/index.js
+@@ -21,7 +21,7 @@ function setCustomFlatListWeb(options) {
+       <ScrollView
+         {...props}
+         //eslint-disable-next-line react/prop-types
+-        refreshControl={<CustomRefreshControl {...options} refreshing={props.refreshing} onRefresh={props.onRefresh} />}
++        refreshControl={!!props.onRefresh ? <CustomRefreshControl {...options} refreshing={props.refreshing} onRefresh={props.onRefresh} /> : undefined}
+       />
+     ),
+   }

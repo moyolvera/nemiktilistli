@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { FlatList, ScrollView, Text, View } from 'react-native';
-import { Container, GuestItem } from '@components';
+import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Container, GuestItem, SwitchSelector, Text } from '@components';
 import { useLogScreen } from '@hooks';
 import { people } from '@actions';
-import { PeopleEntry } from '@actions/people';
+import { FilterType, PeopleEntry } from '@actions/people';
+import { Feather } from '@expo/vector-icons';
 import { useToast } from 'react-native-toast-notifications';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNavigationProp } from 'src/Navigator';
+import { RefreshControl } from 'react-native-web-refresh-control';
 
 import styles from './Manage.styles';
 
@@ -15,7 +19,11 @@ function renderItem({ item }: { item: PeopleEntry }) {
 }
 
 function ManageScreen({}: ManageProps) {
-  const [peopleData, setPeopleData] = React.useState<PeopleEntry[]>();
+  const { navigate } = useNavigation<ScreenNavigationProp>();
+  const [peopleData, setPeopleData] = React.useState<PeopleEntry[]>([]);
+  const [selected, setSelected] = React.useState(0);
+  const [refreshing, setRefreshing] = React.useState(false);
+
   const toast = useToast();
   useLogScreen({ screenName: 'Manage' });
 
@@ -27,24 +35,63 @@ function ManageScreen({}: ManageProps) {
     toast.show('Algo salio mal', { type: 'danger' });
   }
 
-  React.useEffect(() => {
+  function loadData(filter?: FilterType) {
     people
-      .getAllPeopleEntries()
+      .getAllPeopleEntries(filter)
       .then(savePeopleData, handleError)
-      .catch(handleError);
-  }, []);
+      .catch(handleError)
+      .finally(() => setRefreshing(false));
+  }
+
+  function onChangeIndex(index: number) {
+    setSelected(index);
+  }
+
+  function navigateToImport() {
+    navigate('Import');
+  }
+
+  React.useEffect(() => {
+    const params = {
+      isFromBride: selected === 1
+    } as FilterType;
+
+    loadData(selected !== 0 ? params : undefined);
+  }, [selected]);
 
   return (
     <Container>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => {
+              setRefreshing(true);
+              loadData();
+            }}
+            refreshing={refreshing}
+          />
+        }>
         <View style={styles.wrapper}>
           <Text style={styles.title}>Lista de</Text>
           <Text style={styles.postTitle}>Invitados</Text>
-          <FlatList
-            data={peopleData}
-            renderItem={renderItem}
-            keyExtractor={(item: PeopleEntry) => item.token}
+          <TouchableOpacity style={styles.addButton} onPress={navigateToImport}>
+            <Feather name="plus" size={22} color="#000" />
+          </TouchableOpacity>
+          <SwitchSelector
+            options={['Ambos', 'Kari', 'Moy']}
+            selected={selected}
+            onChangeIndex={onChangeIndex}
           />
+          {peopleData.length > 0 ? (
+            <FlatList
+              data={peopleData}
+              renderItem={renderItem}
+              keyExtractor={(item: PeopleEntry) => item.token}
+            />
+          ) : (
+            <Text style={styles.noData}>No hay invitados</Text>
+          )}
         </View>
       </ScrollView>
     </Container>

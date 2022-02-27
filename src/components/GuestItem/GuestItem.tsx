@@ -54,7 +54,11 @@ function GuestItem({
           <Ionicons name="open-outline" size={20} color="rgba(0,0,0,0.2)" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleOnSend}>
-          <Feather name="send" size={20} color="rgba(0,0,0,0.2)" />
+          <Feather
+            name="send"
+            size={20}
+            color={!!invitedOn ? 'rgba(158, 115, 255, 0.7)' : 'rgba(0,0,0,0.2)'}
+          />
         </TouchableOpacity>
       </View>
     </View>

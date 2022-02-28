@@ -7,9 +7,10 @@ interface FooterProps {
   openItinerary: () => void;
   openMenu: () => void;
   openInfo: () => void;
+  sensible?: boolean;
 }
 
-function Footer({ openItinerary, openMenu, openInfo }: FooterProps) {
+function Footer({ openItinerary, openMenu, openInfo, sensible }: FooterProps) {
   return (
     <View style={styles.separate}>
       <View style={styles.wrapper}>
@@ -22,9 +23,11 @@ function Footer({ openItinerary, openMenu, openInfo }: FooterProps) {
         </Text>
       </View>
       <View style={styles.wrapper}>
-        <Text
-          onPress={openInfo}
-          style={styles.fontSmall}>{` NO NIÑOS | ETIQUETA `}</Text>
+        {!sensible ? (
+          <Text
+            onPress={openInfo}
+            style={styles.fontSmall}>{` NO NIÑOS | ETIQUETA `}</Text>
+        ) : null}
       </View>
     </View>
   );

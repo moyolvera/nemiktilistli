@@ -61,6 +61,7 @@ function HomeScreen({}: HomeProps) {
         <Header guest={peopleData} toggleAttending={toggleAttending} />
         <Locations toggleDirections={toggleDirections} />
         <Footer
+          sensible={peopleData?.sensible}
           openItinerary={toggleItinerary}
           openMenu={toggleMenu}
           openInfo={toggleInfo}

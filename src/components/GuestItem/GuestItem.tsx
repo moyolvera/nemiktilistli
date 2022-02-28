@@ -19,25 +19,24 @@ function GuestItem({
 }: GuestItemProps) {
   function handleOnSend() {
     const compoundMessage = `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
+    const link = `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`;
 
     if (!invitedOn) {
       people
         .setPeopleEntryInvitedDate({ token, invitedOn: Date.now() })
         .then(() => {
-          Linking.openURL(
-            `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`
-          );
+          handleOnOpen(link);
         })
         .catch(error => {
           console.log('error', error);
         });
     } else {
-      handleOnOpen();
+      handleOnOpen(link);
     }
   }
 
-  function handleOnOpen() {
-    Linking.openURL(`https://api.whatsapp.com/send?phone=${phone}`);
+  function handleOnOpen(message = `https://api.whatsapp.com/send?phone=${phone}`) {
+    Linking.openURL(message);
   }
 
   return (

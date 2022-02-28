@@ -5,7 +5,7 @@ const { width: WINDOW_WIDTH } = windowDimensions;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#fff',
     width: '100%'
   },
   content: {

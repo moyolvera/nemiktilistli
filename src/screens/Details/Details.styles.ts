@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   wrapper: {
     padding: 20,
-    width: 400
+    width: '100%'
   },
   title: {
     fontFamily: 'GreatVibes-Regular',

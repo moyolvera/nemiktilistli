@@ -19,25 +19,24 @@ function GuestItem({
 }: GuestItemProps) {
   function handleOnSend() {
     const compoundMessage = `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
+    const link = `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`;
 
     if (!invitedOn) {
       people
         .setPeopleEntryInvitedDate({ token, invitedOn: Date.now() })
         .then(() => {
-          Linking.openURL(
-            `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`
-          );
+          handleOnOpen(link);
         })
         .catch(error => {
           console.log('error', error);
         });
     } else {
-      handleOnOpen();
+      handleOnOpen(link);
     }
   }
 
-  function handleOnOpen() {
-    Linking.openURL(`https://api.whatsapp.com/send?phone=${phone}`);
+  function handleOnOpen(message = `https://api.whatsapp.com/send?phone=${phone}`) {
+    Linking.openURL(message);
   }
 
   return (
@@ -50,7 +49,7 @@ function GuestItem({
         <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
       </View>
       <View style={styles.actions}>
-        <TouchableOpacity onPress={handleOnOpen}>
+        <TouchableOpacity onPress={() => handleOnOpen()}>
           <Ionicons name="open-outline" size={20} color="rgba(0,0,0,0.2)" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleOnSend}>

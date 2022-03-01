@@ -46,14 +46,14 @@ function DetailsScreen({}: DetailsProps) {
           </Text>
           {!isSensible && (
             <>
-              <Text style={styles.subtitle}>NO NIÑOS 2-17 AÑOS</Text>
+              <Text style={styles.subtitle}>NO NIÑOS</Text>
               <Text style={styles.info}>Excepcion para niños de brazos.</Text>
               <Text style={styles.info}>
                 Por motivos de seguridad y costos no es posible la asistencia de
-                niños de entre 2 y 18 años. El recinto se encuentra en un lago y
-                tiene una piscina, ademas los meseros se encontraran caminando
-                con espadas en sus manos repartiendo la carne, todo esto resulta
-                peligroso para los niños
+                niños. El recinto se encuentra en un lago y tiene una piscina,
+                ademas los meseros se encontraran caminando con espadas en sus
+                manos repartiendo la carne, todo esto resulta peligroso para los
+                niños
               </Text>
             </>
           )}

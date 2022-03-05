@@ -3,9 +3,11 @@ import { PeopleEntry } from '@actions/people';
 import { View, TouchableOpacity, Linking } from 'react-native';
 import { StatusIcon, Text } from '@components';
 import { Feather, Ionicons } from '@expo/vector-icons';
+import { people } from '@actions';
+import * as Clipboard from 'expo-clipboard';
+import { useToast } from 'react-native-toast-notifications';
 
 import styles from './GuestItem.styles';
-import { people } from '@actions';
 
 const MESSAGE =
   'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia en el siguiente link: \n';
@@ -17,6 +19,8 @@ interface GuestItemProps {
 function GuestItem({
   person: { name, token, invitedOn, phone, answered, message, attending }
 }: GuestItemProps) {
+  const toast = useToast();
+
   function handleOnSend() {
     const compoundMessage = `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
     const link = `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`;
@@ -35,8 +39,22 @@ function GuestItem({
     }
   }
 
-  function handleOnOpen(message = `https://api.whatsapp.com/send?phone=${phone}`) {
+  function handleOnOpen(
+    message = `https://api.whatsapp.com/send?phone=${phone}`
+  ) {
     Linking.openURL(message);
+  }
+
+  function copyToken() {
+    const copied = Clipboard.setString(token);
+
+    if (Boolean(copied)) {
+      toast.show('Token copiado', {
+        type: 'normal',
+        duration: 800,
+        placement: 'bottom'
+      });
+    }
   }
 
   return (
@@ -49,7 +67,9 @@ function GuestItem({
         <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
       </View>
       <View style={styles.actions}>
-        <TouchableOpacity onPress={() => handleOnOpen()}>
+        <TouchableOpacity
+          onPress={() => handleOnOpen()}
+          onLongPress={copyToken}>
           <Ionicons name="open-outline" size={20} color="rgba(0,0,0,0.2)" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleOnSend}>

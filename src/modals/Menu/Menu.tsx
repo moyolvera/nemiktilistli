@@ -67,7 +67,7 @@ function Menu({ visible, closeModal }: MenuProps) {
             </View>
             <TouchableOpacity style={styles.alergicButton}>
               <FontAwesome name="envelope" size={10} />
-              <Text style={styles.alergicText}>SOY ALERGICO</Text>
+              <Text style={styles.alergicText}>ALERGIAS?</Text>
             </TouchableOpacity>
           </LinearGradient>
         </View>

@@ -42,7 +42,6 @@ function Attending({ visible, closeModal, guest }: AttendingProps) {
   async function requestUpdate() {
     if (message === '') {
       setHighlightMessage(true);
-      return;
     }
 
     if (!attending) {

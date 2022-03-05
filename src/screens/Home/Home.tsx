@@ -18,7 +18,7 @@ function HomeScreen({}: HomeProps) {
   const [showMenu, setShowMenu] = React.useState(false);
   const [showAttending, setShowAttending] = React.useState(false);
   const [showDirections, setShowDirections] = React.useState(false);
-  const [showTutorial, setShowTutorial] = React.useState(true);
+  const [showTutorial, setShowTutorial] = React.useState(false);
   const [peopleData, setPeopleData] = React.useState<PeopleEntry>();
 
   useLogScreen({ screenName: 'Home' });
@@ -55,6 +55,20 @@ function HomeScreen({}: HomeProps) {
       }
     }
   }
+
+  React.useEffect(() => {
+    if (!peopleData) {
+      return;
+    }
+
+    if (peopleData.answered) {
+      return;
+    }
+
+    if (peopleData.tutorial) {
+      setShowTutorial(true);
+    }
+  }, [peopleData]);
 
   React.useEffect(() => {
     loadUserData();

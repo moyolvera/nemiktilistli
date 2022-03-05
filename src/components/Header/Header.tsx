@@ -2,8 +2,10 @@ import * as React from 'react';
 import {
   ActivityIndicator,
   ImageBackground,
+  StyleProp,
   TouchableOpacity,
-  View
+  View,
+  ViewStyle
 } from 'react-native';
 import { Text, Timer } from '@components';
 import { Feather } from '@expo/vector-icons';
@@ -16,7 +18,20 @@ interface HeaderProps {
   toggleAttending: () => void;
 }
 
+interface ButtonWrapperProps {
+  disabled: boolean;
+  style: StyleProp<ViewStyle>;
+  children: React.ReactNode;
+  onPress?: () => void;
+}
+
+function ButtonWrapper({ disabled, ...props }: ButtonWrapperProps) {
+  return disabled ? <View {...props} /> : <TouchableOpacity {...props} />;
+}
+
 function Header({ guest, toggleAttending }: HeaderProps) {
+  const [disableButton, setDisableButton] = React.useState(false);
+
   const calendarColor = React.useMemo(() => {
     if (!guest?.answered) {
       return '#000';
@@ -24,6 +39,32 @@ function Header({ guest, toggleAttending }: HeaderProps) {
 
     return guest.attending ? '#00c853' : '#ff3d00';
   }, [guest]);
+
+  React.useEffect(() => {
+    if (!guest) {
+      return;
+    }
+
+    const invitationDate = guest.invitedOn;
+    if (!invitationDate) {
+      return;
+    }
+
+    const diff = Date.now() - invitationDate;
+    const diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+
+    if (diffDays > 15) {
+      setDisableButton(true);
+    }
+  }, [guest]);
+
+  function getPendingAnswerLabel() {
+    if (disableButton) {
+      return 'Lamentamos que no nos acompañes';
+    } else {
+      return 'Responder invitacion';
+    }
+  }
 
   return (
     <ImageBackground
@@ -48,18 +89,19 @@ function Header({ guest, toggleAttending }: HeaderProps) {
       )}
 
       {guest ? (
-        <TouchableOpacity
-          style={[styles.buttonShadow, styles.button]}
+        <ButtonWrapper
+          disabled={disableButton}
+          style={[styles.button, !disableButton && styles.buttonShadow]}
           onPress={toggleAttending}>
           <Feather name="calendar" size={12} color={calendarColor} />
           <Text style={styles.label}>
             {!guest.answered ? (
-              'Responder invitacion'
+              getPendingAnswerLabel()
             ) : (
               <>{guest.attending ? 'Ahi nos vemos' : 'No podre ir'}</>
             )}
           </Text>
-        </TouchableOpacity>
+        </ButtonWrapper>
       ) : (
         <View style={styles.loading}>
           <ActivityIndicator size="small" />

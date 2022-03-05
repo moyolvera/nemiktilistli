@@ -36,32 +36,35 @@ function YoutubeVideo({ onComplete }: YoutubeVideoProps) {
                         // create youtube player
                         var player;
                         function onYouTubePlayerAPIReady() {
-                            player = new YT.Player('player', {
-                              height: '${LARGE_MODAL_SIZE}',
-                              width: '${LARGE_MODAL_SIZE}',
-                              videoId: 'Lv-iaEqDu6M',
-                              playerVars: {
-                                controls: 0,
-                                autoplay: 1,
-                                allow: 'autoplay',
-                              },
-                              events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': onPlayerStateChange
-                              }
-                            });
-                        }
-
-                        // autoplay video
-                        function onPlayerReady(event) {
-                            event.target.playVideo();
-                        }
-
-                        // when video ends
-                        function onPlayerStateChange(event) {        
-                            if(event.data === 0) {            
-                              window.parent.postMessage("completed")
+                          player = new YT.Player('player', {
+                            height: '${LARGE_MODAL_SIZE}',
+                            width: '${LARGE_MODAL_SIZE}',
+                            videoId: 'Lv-iaEqDu6M',
+                            playerVars: {
+                              controls: 0,
+                              mute: 1,
+                              autoplay: 1,
+                              allow: 'autoplay',
+                            },
+                            events: {
+                              'onReady': onPlayerReady,
+                              'onStateChange': onPlayerStateChange
                             }
+                          });
+                        }
+
+                        function onPlayerReady(event) {
+                          event.target.playVideo();
+
+                          setTimeout(() => {
+                            event.target.unMute();
+                          }, 500);
+                        }
+
+                        function onPlayerStateChange(event) {   
+                          if(event.data === 0) {            
+                            window.parent.postMessage("completed")
+                          }
                         }
                     </script>
                   </html>

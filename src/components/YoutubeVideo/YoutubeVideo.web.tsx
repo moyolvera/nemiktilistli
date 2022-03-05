@@ -24,50 +24,50 @@ function YoutubeVideo({ onComplete }: YoutubeVideoProps) {
         onMessage={onMessage}
         source={{
           html: `
-                  <!DOCTYPE html>
-                  <html>
-                    <head>
-                      <script src="https://www.youtube.com/player_api"></script>
-                    </head>
-                    <body style="margin: 0px">
-                      <div id="player"></div>
-                    </body>
-                    <script>
-                        // create youtube player
-                        var player;
-                        function onYouTubePlayerAPIReady() {
-                          player = new YT.Player('player', {
-                            height: '${LARGE_MODAL_SIZE}',
-                            width: '${LARGE_MODAL_SIZE}',
-                            videoId: 'Lv-iaEqDu6M',
-                            playerVars: {
-                              controls: 0,
-                              mute: 1,
-                              autoplay: 1,
-                              allow: 'autoplay',
-                            },
-                            events: {
-                              'onReady': onPlayerReady,
-                              'onStateChange': onPlayerStateChange
-                            }
-                          });
-                        }
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <script src="https://www.youtube.com/player_api"></script>
+              </head>
+              <body style="margin: 0px">
+                <div id="player"></div>
+              </body>
+              <script>
+                  // create youtube player
+                  var player;
+                  function onYouTubePlayerAPIReady() {
+                    player = new YT.Player('player', {
+                      height: '${LARGE_MODAL_SIZE}',
+                      width: '${LARGE_MODAL_SIZE}',
+                      videoId: 'Lv-iaEqDu6M',
+                      playerVars: {
+                        controls: 0,
+                        mute: 1,
+                        autoplay: 1,
+                        allow: 'autoplay',
+                      },
+                      events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                      }
+                    });
+                  }
 
-                        function onPlayerReady(event) {
-                          event.target.playVideo();
+                  function onPlayerReady(event) {
+                    event.target.playVideo();
 
-                          setTimeout(() => {
-                            event.target.unMute();
-                          }, 500);
-                        }
+                    setTimeout(() => {
+                      event.target.unMute();
+                    }, 500);
+                  }
 
-                        function onPlayerStateChange(event) {   
-                          if(event.data === 0) {            
-                            window.parent.postMessage("completed")
-                          }
-                        }
-                    </script>
-                  </html>
+                  function onPlayerStateChange(event) {   
+                    if(event.data === 0) {            
+                      window.parent.postMessage("completed")
+                    }
+                  }
+              </script>
+            </html>
             `
         }}
         automaticallyAdjustContentInsets={false}

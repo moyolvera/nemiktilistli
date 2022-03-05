@@ -27,7 +27,7 @@ function YoutubeVideo({ onComplete }: YoutubeVideoProps) {
                   <!DOCTYPE html>
                   <html>
                     <head>
-                      <script src="http://www.youtube.com/player_api"></script>
+                      <script src="https://www.youtube.com/player_api"></script>
                     </head>
                     <body style="margin: 0px">
                       <div id="player"></div>

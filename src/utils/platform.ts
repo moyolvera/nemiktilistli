@@ -6,4 +6,8 @@ function isWeb() {
 
 const windowDimensions = Dimensions.get('window');
 
-export { isWeb, windowDimensions };
+const { width: WINDOW_WIDTH } = windowDimensions;
+const SIZE = WINDOW_WIDTH < 501 ? WINDOW_WIDTH : 380;
+const LARGE_MODAL_SIZE = SIZE - 20;
+
+export { isWeb, LARGE_MODAL_SIZE, windowDimensions };

@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList, ScreenNavigationProp } from 'src/Navigator';
 import { Container, Header, Footer, Locations } from '@components';
-import { Attending, Directions, Itinerary, Menu } from '@modals';
+import { Attending, Directions, Itinerary, Menu, Tutorial } from '@modals';
 import { useLogScreen } from '@hooks';
 import { people } from '@actions';
 import { PeopleEntry } from '@actions/people';
@@ -18,6 +18,7 @@ function HomeScreen({}: HomeProps) {
   const [showMenu, setShowMenu] = React.useState(false);
   const [showAttending, setShowAttending] = React.useState(false);
   const [showDirections, setShowDirections] = React.useState(false);
+  const [showTutorial, setShowTutorial] = React.useState(true);
   const [peopleData, setPeopleData] = React.useState<PeopleEntry>();
 
   useLogScreen({ screenName: 'Home' });
@@ -28,6 +29,10 @@ function HomeScreen({}: HomeProps) {
 
   function toggleDirections() {
     setShowDirections(!showDirections);
+  }
+
+  function toggleTutorial() {
+    setShowTutorial(!showTutorial);
   }
 
   function toggleMenu() {
@@ -70,6 +75,7 @@ function HomeScreen({}: HomeProps) {
       <Itinerary visible={showItinerary} closeModal={toggleItinerary} />
       <Menu visible={showMenu} closeModal={toggleMenu} />
       <Directions visible={showDirections} closeModal={toggleDirections} />
+      <Tutorial visible={showTutorial} closeModal={toggleTutorial} />
       {peopleData && (
         <Attending
           visible={showAttending}

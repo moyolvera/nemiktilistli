@@ -16,33 +16,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden'
   },
-  image: {
-    width: LARGE_MODAL_SIZE,
-    height: LARGE_MODAL_SIZE
-  },
-  gradientTop: {
+  title: {
     position: 'absolute',
-    top: 0,
-    padding: 8,
-    height: 100,
-    width: '100%'
-  },
-  gradientBottom: {
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    bottom: 0,
-    height: 100,
-    padding: 8,
-    width: '100%'
-  },
-  button: {
-    flexDirection: 'row'
-  },
-  subtitle: {
-    fontFamily: 'Nunito-Bold',
-    marginLeft: 8,
-    color: '#6060a0'
+    top: 10,
+    zIndex: 9,
+    fontFamily: 'GreatVibes-Regular',
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'rgba(255,255,255,0.7)'
   },
   close: {
     top: 20,
@@ -52,11 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)'
-  },
-  title: {
-    fontFamily: 'GreatVibes-Regular',
-    fontSize: 34,
-    alignSelf: 'center'
   }
 });
 

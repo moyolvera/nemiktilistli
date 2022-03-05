@@ -13,6 +13,7 @@ import Switch from './Switch/Switch';
 import SwitchSelector from './SwitchSelector/SwitchSelector';
 import Text from './Text/Text';
 import Timer from './Timer/Timer';
+import YoutubeVideo from './YoutubeVideo';
 
 export {
   CheckBox,
@@ -29,5 +30,6 @@ export {
   Switch,
   SwitchSelector,
   Text,
-  Timer
+  Timer,
+  YoutubeVideo
 };

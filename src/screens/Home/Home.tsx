@@ -65,6 +65,10 @@ function HomeScreen({}: HomeProps) {
       return;
     }
 
+    if (showAttending) {
+      return;
+    }
+
     if (peopleData.tutorial) {
       setShowTutorial(true);
     }

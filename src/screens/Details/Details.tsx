@@ -35,19 +35,22 @@ function DetailsScreen({}: DetailsProps) {
           <View style={styles.separator} />
           <Text style={styles.subtitle}>CONFIRMAR ASISTENCIA</Text>
           <Text style={styles.info}>
-            Favor de confirmar su asistencia o no asistencia a mas tardar el dia
-            15 dias despues de recibir su invitacion para reservar su lugar. Si
-            no se confirma el lugar sera reasignado y entregado a otra persona
+            Favor de confirmar su asistencia o no asistencia a mas tardar 15
+            dias despues de recibir su invitacion para reservar su lugar. Si no
+            se confirma el lugar sera reasignado y entregado a otra persona
           </Text>
-          <Text style={styles.info}>
+          <Text style={[styles.info, styles.bold]}>
             Los asientos se reservan y asignan por persona, por lo que si
             confirma su asistencia, consideramos el compromiso de su parte para
-            que no se pierda el asiento.
+            que no se pierda el asiento
           </Text>
+          <Text style={styles.subtitle}>LA INVITACION ES INDIVIDUAL</Text>
           {!isSensible && (
             <>
               <Text style={styles.subtitle}>NO NIÑOS</Text>
-              <Text style={styles.info}>Excepcion para niños de brazos.</Text>
+              <Text style={[styles.info, styles.bold]}>
+                Si se permiten niños de brazos, bebes
+              </Text>
               <Text style={styles.info}>
                 Por motivos de seguridad y costos no es posible la asistencia de
                 niños. El recinto se encuentra en un lago y tiene una piscina,
@@ -75,11 +78,10 @@ function DetailsScreen({}: DetailsProps) {
             asi como respetar los protocolos de la aplicacion de gel
             antibacterial
           </Text>
-          <Text style={styles.subtitle}>BYOB Y REGALOS</Text>
+          <Text style={styles.subtitle}>VINO Y REGALOS</Text>
           <Text style={styles.info}>
-            Se agradece de antemano los buenos deseos e intenciones, no es
-            necesario acudir con presentes para la ocacion pero por motivos de
-            logistica se recomienda traer su propia botella
+            No es necesario acudir con presentes para la ocacion pero por
+            motivos de logistica se recomienda traer su propia botella
           </Text>
           {!isSensible && (
             <>

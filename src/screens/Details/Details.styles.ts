@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     fontFamily: 'GreatVibes-Regular',
     fontSize: 34,
     lineHeight: 22,
-    marginTop: 40,
+    marginTop: 10,
     textAlign: 'center'
   },
   separator: {
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     fontSize: 12,
     textAlign: 'justify'
+  },
+  bold: {
+    fontFamily: 'Nunito-Bold'
   }
 });
 

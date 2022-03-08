@@ -5,6 +5,7 @@ import {
   NativeStackNavigationProp
 } from '@react-navigation/native-stack';
 import {
+  AddEditScreen,
   DetailsScreen,
   ImportScreen,
   HomeScreen,
@@ -13,9 +14,13 @@ import {
   PasswordScreen
 } from '@screens';
 import { ManageContext } from '@context/ManageContext';
+import { PeopleEntry } from '@actions/people';
 
 export type RootStackParamList = {
   Home?: { token: string };
+  AddEdit: {
+    guest?: PeopleEntry;
+  };
   Details: { isSensible?: boolean };
   Import: undefined;
   Manage: undefined;
@@ -38,6 +43,7 @@ const linking = {
       Details: 'details',
       Password: 'password',
       Manage: 'manage',
+      AddEdit: 'edit',
       Import: 'import',
       NotFound: '*'
     }
@@ -57,6 +63,7 @@ function Navigator() {
         {canManageContext && (
           <>
             <Stack.Screen name="Manage" component={ManageScreen} />
+            <Stack.Screen name="AddEdit" component={AddEditScreen} />
             <Stack.Screen name="Import" component={ImportScreen} />
           </>
         )}

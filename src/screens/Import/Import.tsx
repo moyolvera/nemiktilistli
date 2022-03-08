@@ -121,7 +121,7 @@ function ImportScreen({}: ImportProps) {
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          <Text style={styles.title}>Agregar</Text>
+          <Text style={styles.title}>Importar</Text>
           <Text style={styles.postTitle}>Invitados</Text>
           <View style={styles.buttonsWrapper}>
             <TouchableOpacity onPress={toggleLoadData}>

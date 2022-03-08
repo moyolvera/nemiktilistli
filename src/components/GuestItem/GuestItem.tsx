@@ -8,6 +8,8 @@ import * as Clipboard from 'expo-clipboard';
 import { useToast } from 'react-native-toast-notifications';
 
 import styles from './GuestItem.styles';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNavigationProp } from 'src/Navigator';
 
 const MESSAGE =
   'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia en el siguiente link: \n';
@@ -16,10 +18,11 @@ interface GuestItemProps {
   person: PeopleEntry;
 }
 
-function GuestItem({
-  person: { name, token, invitedOn, phone, answered, message, attending }
-}: GuestItemProps) {
+function GuestItem({ person }: GuestItemProps) {
+  const { name, token, invitedOn, phone, answered, message, attending } =
+    person;
   const toast = useToast();
+  const { navigate } = useNavigation<ScreenNavigationProp>();
 
   function handleOnSend() {
     const compoundMessage = `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
@@ -45,6 +48,10 @@ function GuestItem({
     Linking.openURL(message);
   }
 
+  function navigateToEdit() {
+    navigate('AddEdit', { guest: person });
+  }
+
   function copyToken() {
     const copied = Clipboard.setString(token);
 
@@ -67,10 +74,8 @@ function GuestItem({
         <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
       </View>
       <View style={styles.actions}>
-        <TouchableOpacity
-          onPress={() => handleOnOpen()}
-          onLongPress={copyToken}>
-          <Ionicons name="open-outline" size={20} color="rgba(0,0,0,0.2)" />
+        <TouchableOpacity onPress={navigateToEdit} onLongPress={copyToken}>
+          <Ionicons name="pencil" size={20} color="rgba(0,0,0,0.2)" />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleOnSend}>
           <Feather

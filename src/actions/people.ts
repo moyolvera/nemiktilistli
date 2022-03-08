@@ -28,7 +28,7 @@ export interface PeopleEntry extends PeopleEntryResponse {
   token: string;
 }
 
-type AvailableFilterKeys = 'isFromBride' | 'answered' | 'attending';
+type AvailableFilterKeys = 'isFromBride' | 'answered' | 'attending' | 'name';
 export type FilterType = Pick<PeopleEntry, AvailableFilterKeys>;
 
 export type ImportPeopleEntry = Pick<
@@ -72,6 +72,10 @@ async function getAllPeopleEntries(filter?: FilterType) {
     const keys = Object.keys(filter) as AvailableFilterKeys[];
     return records.filter(record => {
       return keys.every(key => {
+        if (key === 'name') {
+          return record[key].toLowerCase().includes(filter[key].toLowerCase());
+        }
+
         return record[key] === filter[key];
       });
     });
@@ -91,6 +95,24 @@ async function getPeopleEntry(token: string) {
   }
 
   return undefined;
+}
+
+async function savePeople(guest: Omit<PeopleEntry, 'token'>, token?: string) {
+  const firestore = getFirestore();
+
+  try {
+    if (token) {
+      const docRef = doc(firestore, 'people', token);
+      await updateDoc(docRef, guest);
+      return true;
+    }
+
+    await addDoc(collection(firestore, 'people'), guest);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
 
 async function savePeopleEntries(guests: PeopleEntry[]) {
@@ -147,6 +169,7 @@ export {
   getAllPeopleEntries,
   getPeopleEntry,
   savePeopleEntries,
+  savePeople,
   setPeopleEntryInvitedDate,
   updatePeopleEntry
 };

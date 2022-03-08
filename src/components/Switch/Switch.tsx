@@ -13,10 +13,18 @@ import styles from './Switch.styles';
 interface SwitchProps {
   label: string;
   initialValue?: boolean;
-  onChangeValue: (value: boolean) => void;
+  onChangeValue?: (value: boolean) => void;
 }
 
-function Switch({ label, onChangeValue, initialValue }: SwitchProps) {
+export type SwitchHandlers = {
+  getValue: () => boolean;
+  setValue: (value: boolean) => void;
+};
+
+const Switch: React.ForwardRefRenderFunction<SwitchHandlers, SwitchProps> = (
+  { label, initialValue },
+  forwardedRef
+) => {
   const isFirstRender = React.useRef(true);
   const [checked, setChecked] = React.useState(() => initialValue || false);
   const animation = useSharedValue(0);
@@ -54,9 +62,16 @@ function Switch({ label, onChangeValue, initialValue }: SwitchProps) {
       isFirstRender.current = false;
       return;
     }
-
-    onChangeValue(checked);
   }, [checked]);
+
+  React.useImperativeHandle(forwardedRef, () => ({
+    getValue: () => {
+      return checked;
+    },
+    setValue: (newValue: boolean) => {
+      setChecked(newValue);
+    }
+  }));
 
   return (
     <View style={styles.wrapper}>
@@ -68,6 +83,6 @@ function Switch({ label, onChangeValue, initialValue }: SwitchProps) {
       <Text style={styles.label}>{label}</Text>
     </View>
   );
-}
+};
 
-export default Switch;
+export default React.forwardRef(Switch);

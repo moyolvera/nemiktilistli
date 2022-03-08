@@ -6,6 +6,17 @@ const styles = StyleSheet.create({
     top: 28,
     right: 16
   },
+  counter: {
+    fontFamily: 'Nunito-Regular',
+    fontSize: 12,
+    color: '#999',
+    marginBottom: 8
+  },
+  filterButton: {
+    position: 'absolute',
+    top: 28,
+    right: 44
+  },
   wrapper: {
     paddingTop: 30,
     padding: 20
@@ -17,8 +28,7 @@ const styles = StyleSheet.create({
   },
   postTitle: {
     fontSize: 28,
-    fontFamily: 'Quattrocento-Bold',
-    marginBottom: 16
+    fontFamily: 'Quattrocento-Bold'
   },
   noData: {
     alignSelf: 'center',

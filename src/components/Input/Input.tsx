@@ -1,7 +1,7 @@
-import { Feather } from '@expo/vector-icons';
-import useDebounce from '@hooks/useDebounce';
-import { MotiView, AnimatePresence } from 'moti';
 import * as React from 'react';
+import { Feather } from '@expo/vector-icons';
+import { useDebounce } from '@hooks';
+import { MotiView, AnimatePresence } from 'moti';
 import {
   TextInput,
   TextInputProps,

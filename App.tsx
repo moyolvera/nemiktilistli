@@ -9,6 +9,7 @@ import FIREBASE_CONFIG from '@utils/firebase';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { Feather } from '@expo/vector-icons';
 import ManageProvider from '@context/ManageContext';
+import DisplayProvider from '@context/DisplayContext';
 import { patchFlatListProps } from 'react-native-web-refresh-control';
 import { useSecretAccess } from '@hooks';
 
@@ -31,10 +32,12 @@ export default function App() {
         successIcon={<Feather name="check-circle" size={18} color="#fff" />}
         dangerIcon={<Feather name="alert-circle" size={18} color="#fff" />}
         warningIcon={<Feather name="alert-triangle" size={18} color="#fff" />}>
-        <ManageProvider secret={secret}>
-          <StatusBar style="auto" />
-          <Navigator />
-        </ManageProvider>
+        <DisplayProvider>
+          <ManageProvider secret={secret}>
+            <StatusBar style="auto" />
+            <Navigator />
+          </ManageProvider>
+        </DisplayProvider>
       </ToastProvider>
     </View>
   );

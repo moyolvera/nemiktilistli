@@ -26,7 +26,10 @@ function Footer({ openItinerary, openMenu, openInfo, sensible }: FooterProps) {
         {!sensible ? (
           <Text
             onPress={openInfo}
-            style={styles.fontSmall}>{` NO NIÑOS | ETIQUETA `}</Text>
+            style={[
+              styles.fontSmall,
+              styles.blackText
+            ]}>{` NO NIÑOS | ETIQUETA `}</Text>
         ) : null}
       </View>
     </View>

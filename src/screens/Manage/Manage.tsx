@@ -60,8 +60,6 @@ function ManageScreen({}: ManageProps) {
   }
 
   React.useEffect(() => {
-    console.log(filters);
-
     refreshScreen(true);
   }, [filters]);
 

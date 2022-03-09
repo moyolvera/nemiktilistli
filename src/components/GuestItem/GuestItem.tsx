@@ -52,6 +52,10 @@ function GuestItem({ person }: GuestItemProps) {
     navigate('AddEdit', { guest: person });
   }
 
+  function navigateToHome() {
+    navigate('Home', { token });
+  }
+
   function copyToken() {
     const copied = Clipboard.setString(token);
 
@@ -69,10 +73,10 @@ function GuestItem({ person }: GuestItemProps) {
       <View style={styles.status}>
         <StatusIcon answered={answered} attending={attending} />
       </View>
-      <View style={styles.content}>
+      <TouchableOpacity style={styles.content} onPress={navigateToHome}>
         <Text style={styles.personName}>{name}</Text>
         <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.actions}>
         <TouchableOpacity onPress={navigateToEdit} onLongPress={copyToken}>
           <Ionicons name="pencil" size={20} color="rgba(0,0,0,0.2)" />

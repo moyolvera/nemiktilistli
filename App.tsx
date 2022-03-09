@@ -10,6 +10,7 @@ import { ToastProvider } from 'react-native-toast-notifications';
 import { Feather } from '@expo/vector-icons';
 import ManageProvider from '@context/ManageContext';
 import { patchFlatListProps } from 'react-native-web-refresh-control';
+import { useSecretAccess } from '@hooks';
 
 import Navigator from './src/Navigator';
 
@@ -18,6 +19,7 @@ patchFlatListProps();
 
 export default function App() {
   const [fontsLoaded] = useFonts(customFonts);
+  const { secret } = useSecretAccess();
 
   return !fontsLoaded ? (
     <SplashScreen />
@@ -29,7 +31,7 @@ export default function App() {
         successIcon={<Feather name="check-circle" size={18} color="#fff" />}
         dangerIcon={<Feather name="alert-circle" size={18} color="#fff" />}
         warningIcon={<Feather name="alert-triangle" size={18} color="#fff" />}>
-        <ManageProvider>
+        <ManageProvider secret={secret}>
           <StatusBar style="auto" />
           <Navigator />
         </ManageProvider>

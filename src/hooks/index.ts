@@ -1,3 +1,5 @@
+import useDebounce from './useDebounce';
 import useLogScreen from './useLogScreen';
+import useSecretAccess from './useSecretAccess';
 
-export { useLogScreen };
+export { useDebounce, useLogScreen, useSecretAccess };

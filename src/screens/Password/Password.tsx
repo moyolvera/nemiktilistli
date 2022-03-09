@@ -13,6 +13,7 @@ import { ManageContext } from '@context/ManageContext';
 import { getSecretEntry, SecretEntry } from '@actions/secret';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from 'src/Navigator';
+import asyncStorageUtil from '@utils/asyncStorageUtil';
 
 import styles from './Password.styles';
 
@@ -46,7 +47,7 @@ function PasswordScreen({}: PasswordProps) {
     toast.show('Algo salio mal, intentalo mas tarde', { type: 'danger' });
   }
 
-  function handleSecretEntryRequest(entry: SecretEntry | undefined) {
+  async function handleSecretEntryRequest(entry: SecretEntry | undefined) {
     if (!entry) {
       setSecret('');
       shake();
@@ -58,6 +59,8 @@ function PasswordScreen({}: PasswordProps) {
     }
 
     toast.show('Contraseña correcta!', { type: 'success' });
+
+    await asyncStorageUtil.storeData('secret', `${Date.now()}`);
 
     if (setCanManageContext) {
       setCanManageContext(true);
@@ -72,8 +75,6 @@ function PasswordScreen({}: PasswordProps) {
   );
 
   React.useEffect(() => {
-    console.log(secret);
-
     if (secret.length !== 4) {
       return;
     }

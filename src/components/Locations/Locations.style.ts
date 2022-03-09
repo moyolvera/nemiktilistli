@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     padding: 14,
     alignItems: 'center'
   },
+  transparent: {
+    opacity: 0
+  },
   label: {
     fontFamily: 'Quattrocento-Regular',
     fontSize: 12,

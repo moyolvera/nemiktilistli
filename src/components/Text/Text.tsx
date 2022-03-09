@@ -1,8 +1,25 @@
 import * as React from 'react';
-import { Text as RNText, TextProps } from 'react-native';
+import { DisplayContext } from '@context/DisplayContext';
+import { StyleSheet, Text as RNText, TextProps } from 'react-native';
 
-function Text(props: TextProps) {
-  return <RNText {...props} />;
+const textStyles = StyleSheet.create({
+  font: {
+    color: 'transparent'
+  }
+});
+
+function Text({ style, ...props }: TextProps) {
+  const { displayStatus } = React.useContext(DisplayContext);
+
+  const styles = React.useMemo(() => {
+    if (displayStatus === 1) {
+      return [style, textStyles.font];
+    }
+
+    return style;
+  }, [displayStatus]);
+
+  return <RNText {...props} style={styles} />;
 }
 
 export default Text;

@@ -12,6 +12,7 @@ import { Feather } from '@expo/vector-icons';
 import { PeopleEntry } from '@actions/people';
 
 import styles from './Header.styles';
+import { DisplayContext } from '@context/DisplayContext';
 
 interface HeaderProps {
   guest?: PeopleEntry;
@@ -30,6 +31,8 @@ function ButtonWrapper({ disabled, ...props }: ButtonWrapperProps) {
 }
 
 function Header({ guest, toggleAttending }: HeaderProps) {
+  const { displayStatus, updateDisplayStatus } =
+    React.useContext(DisplayContext);
   const [disableButton, setDisableButton] = React.useState(false);
 
   const calendarColor = React.useMemo(() => {
@@ -68,9 +71,17 @@ function Header({ guest, toggleAttending }: HeaderProps) {
 
   return (
     <ImageBackground
-      source={require('../../../assets/images/cover.png')}
+      source={
+        displayStatus === 2
+          ? require('../../../assets/images/cover-w.jpg')
+          : require('../../../assets/images/cover.png')
+      }
       resizeMode="cover"
       style={styles.wrapper}>
+      <TouchableOpacity
+        style={styles.invisibleButton}
+        onLongPress={updateDisplayStatus}
+      />
       <Text style={styles.title}>{`Nos        \n   Casamos`}</Text>
       <Text style={styles.subtitle}>{'Kary & Moy'}</Text>
       <Text style={styles.guest}>{`${guest?.name || 'Cargando...'}`}</Text>
@@ -91,7 +102,11 @@ function Header({ guest, toggleAttending }: HeaderProps) {
       {guest ? (
         <ButtonWrapper
           disabled={disableButton}
-          style={[styles.button, !disableButton && styles.buttonShadow]}
+          style={[
+            styles.button,
+            !disableButton && styles.buttonShadow,
+            displayStatus !== 0 && styles.transparent
+          ]}
           onPress={toggleAttending}>
           <Feather name="calendar" size={12} color={calendarColor} />
           <Text style={styles.label}>

@@ -9,6 +9,17 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     alignItems: 'center'
   },
+  invisibleButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 50,
+    height: 50,
+    zIndex: 9999
+  },
+  transparent: {
+    opacity: 0
+  },
   title: {
     fontFamily: 'GreatVibes-Regular',
     fontSize: 65,

@@ -14,6 +14,18 @@ import { ScreenNavigationProp } from 'src/Navigator';
 const MESSAGE =
   'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia en el siguiente link: \n';
 
+const ATTENDING_MESSAGE =
+  'Gracias por confirmar tu asistencia, tu lugar a sido reservado, *te recordamos que contamos contigo para no perder ningun lugar* ya que cada lugar es único y no podemos dejar ningun lugar sin asistencia.';
+
+const UNANSWERED_MESSAGE =
+  'Hola, se han transcurrido los dias limite y no recibimos respuesta. El lugar sera reasignado, lamentamos que no puedas asistir, agradecemos tu comprension y esperamos verte pronto. Que tengas un excelente dia.';
+
+const NOT_GOING_MESSAGE =
+  'Agradecemos tu respuesta a la invitacion. Lamentamos que no nos puedas acompanñar, esperamos verte pronto.';
+
+const WARNING_MESSAGE =
+  'Hola, solo para recordarte que se agotan los dias para confirmar tu asistencia, por favor confirma tu asistencia o no asistencia en el siguiente link: \n';
+
 interface GuestItemProps {
   person: PeopleEntry;
 }
@@ -23,9 +35,65 @@ function GuestItem({ person }: GuestItemProps) {
     person;
   const toast = useToast();
   const { navigate } = useNavigation<ScreenNavigationProp>();
+  const daysOfInvite = React.useMemo(() => {
+    if (!invitedOn) {
+      return 15;
+    }
+
+    const diff = Date.now() - invitedOn;
+    return Math.ceil(diff / (1000 * 3600 * 24));
+  }, [invitedOn]);
+
+  const highlighStyle = React.useMemo(() => {
+    if (answered && attending) {
+      if (daysOfInvite >= 16) {
+        return styles.greenHighlight;
+      }
+
+      return styles.cyanHighlight;
+    }
+
+    if (daysOfInvite >= 16) {
+      return styles.blackHighlight;
+    }
+
+    if (daysOfInvite >= 14) {
+      return styles.redHighlight;
+    }
+
+    if (daysOfInvite >= 12) {
+      return styles.orangeHighlight;
+    }
+
+    if (daysOfInvite >= 10) {
+      return styles.yellowHighlight;
+    }
+
+    return undefined;
+  }, [daysOfInvite, answered, attending]);
+
+  function getMessage() {
+    if (daysOfInvite >= 16) {
+      if (answered) {
+        if (attending) {
+          return ATTENDING_MESSAGE;
+        } else {
+          return NOT_GOING_MESSAGE;
+        }
+      }
+
+      return UNANSWERED_MESSAGE;
+    }
+
+    if (daysOfInvite >= 12) {
+      return `${WARNING_MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
+    }
+
+    return `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
+  }
 
   function handleOnSend() {
-    const compoundMessage = `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
+    const compoundMessage = getMessage();
     const link = `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`;
 
     if (!invitedOn) {
@@ -69,7 +137,7 @@ function GuestItem({ person }: GuestItemProps) {
   }
 
   return (
-    <View style={styles.person}>
+    <View style={[styles.person, highlighStyle]}>
       <View style={styles.status}>
         <StatusIcon answered={answered} attending={attending} />
       </View>

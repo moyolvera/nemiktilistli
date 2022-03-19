@@ -56,7 +56,7 @@ function Header({ guest, toggleAttending }: HeaderProps) {
     const diff = Date.now() - invitationDate;
     const diffDays = Math.ceil(diff / (1000 * 3600 * 24));
 
-    if (diffDays > 14) {
+    if (diffDays > 13) {
       setDisableButton(true);
     }
   }, [guest]);

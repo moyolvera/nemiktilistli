@@ -2,28 +2,28 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   blackHighlight: {
-    borderBottomColor: 'black',
-    borderBottomWidth: 2
+    borderLeftColor: 'black',
+    borderLeftWidth: 2
   },
   cyanHighlight: {
-    borderBottomColor: 'cyan',
-    borderBottomWidth: 2
+    borderLeftColor: 'cyan',
+    borderLeftWidth: 2
   },
   greenHighlight: {
-    borderBottomColor: '#ff94ff',
-    borderBottomWidth: 2
+    borderLeftColor: '#ff94ff',
+    borderLeftWidth: 2
   },
   redHighlight: {
-    borderBottomColor: 'red',
-    borderBottomWidth: 2
+    borderLeftColor: 'red',
+    borderLeftWidth: 2
   },
   orangeHighlight: {
-    borderBottomColor: 'orange',
-    borderBottomWidth: 2
+    borderLeftColor: 'orange',
+    borderLeftWidth: 2
   },
   yellowHighlight: {
-    borderBottomColor: 'yellow',
-    borderBottomWidth: 2
+    borderLeftColor: 'yellow',
+    borderLeftWidth: 2
   },
   person: {
     backgroundColor: '#fff',

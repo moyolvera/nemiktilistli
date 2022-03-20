@@ -1,14 +1,15 @@
 import {
-  getFirestore,
-  getDoc,
-  doc,
-  updateDoc,
+  addDoc,
   collection,
-  query,
-  where,
-  orderBy,
+  doc,
+  getDoc,
   getDocs,
-  addDoc
+  getFirestore,
+  onSnapshot,
+  orderBy,
+  query,
+  Unsubscribe,
+  updateDoc
 } from 'firebase/firestore';
 
 interface PeopleEntryResponse {
@@ -47,15 +48,50 @@ export function determineIfIsImportPeopleEntry(
   );
 }
 
-async function getAllPeopleEntries(filter?: FilterType) {
+function subscribeToAllPeopleEntries(
+  updateFunction: (records: PeopleEntry[]) => void
+): Unsubscribe {
   const firestore = getFirestore();
 
   const peopleCollection = collection(firestore, 'people');
-  const peopleQuery = query(
-    peopleCollection,
-    where('name', '!=', ''),
-    orderBy('name')
-  );
+  const peopleQuery = query(peopleCollection, orderBy('name'));
+
+  return onSnapshot(peopleQuery, snapshot => {
+    const records = snapshot.docs.map(docSnap => {
+      const data = docSnap.data() as PeopleEntryResponse;
+      const token = docSnap.id;
+      return {
+        ...data,
+        token
+      } as PeopleEntry;
+    });
+
+    updateFunction(records);
+  });
+}
+
+function filterPeopleData(records: PeopleEntry[], filter?: FilterType) {
+  if (!filter) {
+    return records;
+  }
+
+  const keys = Object.keys(filter) as AvailableFilterKeys[];
+  return records.filter(record => {
+    return keys.every(key => {
+      if (key === 'name') {
+        return record[key].toLowerCase().includes(filter[key].toLowerCase());
+      }
+
+      return record[key] === filter[key];
+    });
+  });
+}
+
+async function getAllPeopleEntries() {
+  const firestore = getFirestore();
+
+  const peopleCollection = collection(firestore, 'people');
+  const peopleQuery = query(peopleCollection, orderBy('name'));
 
   const querySnapshot = await getDocs(peopleQuery);
 
@@ -67,19 +103,6 @@ async function getAllPeopleEntries(filter?: FilterType) {
       token
     } as PeopleEntry;
   });
-
-  if (filter) {
-    const keys = Object.keys(filter) as AvailableFilterKeys[];
-    return records.filter(record => {
-      return keys.every(key => {
-        if (key === 'name') {
-          return record[key].toLowerCase().includes(filter[key].toLowerCase());
-        }
-
-        return record[key] === filter[key];
-      });
-    });
-  }
 
   return records;
 }
@@ -166,10 +189,12 @@ async function updatePeopleEntry(
 }
 
 export {
+  filterPeopleData,
   getAllPeopleEntries,
   getPeopleEntry,
-  savePeopleEntries,
   savePeople,
+  savePeopleEntries,
   setPeopleEntryInvitedDate,
+  subscribeToAllPeopleEntries,
   updatePeopleEntry
 };

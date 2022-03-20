@@ -14,6 +14,7 @@ import { patchFlatListProps } from 'react-native-web-refresh-control';
 import { useSecretAccess } from '@hooks';
 
 import Navigator from './src/Navigator';
+import PeopleProvider from '@context/PeopleContext';
 
 initializeApp(FIREBASE_CONFIG);
 patchFlatListProps();
@@ -34,8 +35,10 @@ export default function App() {
         warningIcon={<Feather name="alert-triangle" size={18} color="#fff" />}>
         <DisplayProvider>
           <ManageProvider secret={secret}>
-            <StatusBar style="auto" />
-            <Navigator />
+            <PeopleProvider>
+              <StatusBar style="auto" />
+              <Navigator />
+            </PeopleProvider>
           </ManageProvider>
         </DisplayProvider>
       </ToastProvider>

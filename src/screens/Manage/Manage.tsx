@@ -2,16 +2,14 @@ import * as React from 'react';
 import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
 import { ActionsToolbar, Container, GuestItem, Text } from '@components';
 import { useLogScreen } from '@hooks';
-import { people } from '@actions';
-import { FilterType, PeopleEntry } from '@actions/people';
+import { filterPeopleData, FilterType, PeopleEntry } from '@actions/people';
 import { Feather } from '@expo/vector-icons';
-import { useToast } from 'react-native-toast-notifications';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNavigationProp } from 'src/Navigator';
-import { RefreshControl } from 'react-native-web-refresh-control';
 
 import styles from './Manage.styles';
 import { AnimatePresence, MotiView } from 'moti';
+import { PeopleContext } from '@context/PeopleContext';
 
 interface ManageProps {}
 
@@ -20,56 +18,34 @@ function renderItem({ item }: { item: PeopleEntry }) {
 }
 
 function ManageScreen({}: ManageProps) {
+  useLogScreen({ screenName: 'Manage' });
   const { navigate } = useNavigation<ScreenNavigationProp>();
-  const [peopleData, setPeopleData] = React.useState<PeopleEntry[]>([]);
-  const [refreshing, setRefreshing] = React.useState(false);
-
+  const { peopleData, getPeopleData } = React.useContext(PeopleContext);
+  const [localPeopleData, setLocalPeopleData] = React.useState<PeopleEntry[]>(
+    []
+  );
   const [filters, setFilters] = React.useState<FilterType | undefined>(
     undefined
   );
-
-  const toast = useToast();
-  useLogScreen({ screenName: 'Manage' });
-
-  function savePeopleData(data: PeopleEntry[]) {
-    setPeopleData(data);
-  }
-
-  function handleError() {
-    toast.show('Algo salio mal', { type: 'danger' });
-  }
-
-  function loadData(filter?: FilterType) {
-    people
-      .getAllPeopleEntries(filter)
-      .then(savePeopleData, handleError)
-      .catch(handleError)
-      .finally(() => setRefreshing(false));
-  }
 
   function navigateToAddEdit() {
     navigate('AddEdit', { guest: undefined });
   }
 
-  function refreshScreen(avoidRefresh?: boolean) {
-    if (!avoidRefresh) {
-      setRefreshing(true);
-    }
-
-    loadData(filters);
-  }
+  React.useEffect(() => {
+    const filtedNewData = filterPeopleData(peopleData, filters);
+    setLocalPeopleData(filtedNewData);
+  }, [peopleData, filters]);
 
   React.useEffect(() => {
-    refreshScreen(true);
-  }, [filters]);
+    if (getPeopleData && peopleData.length === 0) {
+      getPeopleData();
+    }
+  }, []);
 
   return (
     <Container>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl onRefresh={refreshScreen} refreshing={refreshing} />
-        }>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <Text style={styles.title}>Lista de</Text>
           <Text style={styles.postTitle}>Invitados</Text>
@@ -96,12 +72,14 @@ function ManageScreen({}: ManageProps) {
             ) : null}
           </AnimatePresence>
           <ActionsToolbar setFilters={setFilters} />
-          {peopleData.length > 0 ? (
+          {localPeopleData.length > 0 ? (
             <>
               <Text
-                style={styles.counter}>{`${peopleData.length} personas`}</Text>
+                style={
+                  styles.counter
+                }>{`${localPeopleData.length} personas`}</Text>
               <FlatList
-                data={peopleData}
+                data={localPeopleData}
                 renderItem={renderItem}
                 keyExtractor={(item: PeopleEntry) => item.token}
               />

@@ -46,26 +46,26 @@ function GuestItem({ person }: GuestItemProps) {
 
   const highlighStyle = React.useMemo(() => {
     if (answered && attending) {
-      if (daysOfInvite >= 16) {
+      if (daysOfInvite > 13) {
         return styles.greenHighlight;
       }
 
       return styles.cyanHighlight;
     }
 
-    if (daysOfInvite >= 16) {
+    if (daysOfInvite > 13) {
       return styles.blackHighlight;
     }
 
-    if (daysOfInvite >= 14) {
+    if (daysOfInvite > 12) {
       return styles.redHighlight;
     }
 
-    if (daysOfInvite >= 12) {
+    if (daysOfInvite > 11) {
       return styles.orangeHighlight;
     }
 
-    if (daysOfInvite >= 10) {
+    if (daysOfInvite > 10) {
       return styles.yellowHighlight;
     }
 
@@ -73,7 +73,7 @@ function GuestItem({ person }: GuestItemProps) {
   }, [daysOfInvite, answered, attending]);
 
   function getMessage() {
-    if (daysOfInvite >= 16) {
+    if (daysOfInvite > 13) {
       if (answered) {
         if (attending) {
           return ATTENDING_MESSAGE;
@@ -85,7 +85,11 @@ function GuestItem({ person }: GuestItemProps) {
       return UNANSWERED_MESSAGE;
     }
 
-    if (daysOfInvite >= 12) {
+    if (answered && attending) {
+      return ATTENDING_MESSAGE;
+    }
+
+    if (daysOfInvite >= 11) {
       return `${WARNING_MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
     }
 

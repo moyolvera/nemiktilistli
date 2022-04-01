@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { Linking, TouchableOpacity, View } from 'react-native';
 import { Text } from '@components';
 import styles from './Footer.styles';
 
@@ -22,11 +22,21 @@ function Footer({ openItinerary, openMenu, openInfo, sensible }: FooterProps) {
           | INFORMACION
         </Text>
       </View>
+      <TouchableOpacity
+        style={styles.wrapper}
+        onPress={() => {
+          Linking.openURL(
+            'http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857'
+          );
+        }}>
+        <Text style={[styles.font]}>{` MESA DE REGALOS `}</Text>
+      </TouchableOpacity>
       <View style={styles.wrapper}>
         {!sensible ? (
           <Text
             onPress={openInfo}
             style={[
+              styles.separation,
               styles.fontSmall,
               styles.blackText
             ]}>{` NO NIÑOS | ETIQUETA `}</Text>

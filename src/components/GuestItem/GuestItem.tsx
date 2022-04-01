@@ -15,10 +15,10 @@ const MESSAGE =
   'Tenemos el gusto de invitarte en este dia tan especial para nosotros, esperamos nos puedas acompañar, por favor confirma tu asistencia en el siguiente link: \n';
 
 const ATTENDING_MESSAGE =
-  'Gracias por confirmar tu asistencia, tu lugar a sido reservado, *te recordamos que contamos contigo para no perder ningun lugar* ya que cada lugar es único y no podemos dejar ningun lugar sin asistencia.';
+  'Hola, queremos agradacerte por confirmar tu asistencia. Tu lugar a sido reservado, *te recordamos que contamos contigo para no perder ningun lugar* ya que cada lugar esta pagado y si se deja vacio se perdera ese dinero. Tambien recordarte que por medidas de seguridad *NO se permitira la entrada a niños a menos que aun sean de brazos*, no tendremos tampoco sillas ni platos adicionales. A la entrada los organizadores te preguntaran tu nombre y te llevaran a tu lugar asignado. Estamos muy felices de contar con tu asistencia y estamos ansiosos porque se llegue la fecha. Nos vemos pronto. Que tengas un excelente dia.\n\n\n PD: No es necesario pero te hacemos saber que contamos con mesa de regalos 🤭😊💃: \nhttp://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857';
 
 const UNANSWERED_MESSAGE =
-  'Hola, se han transcurrido los dias limite y no recibimos respuesta. El lugar sera reasignado, lamentamos que no puedas asistir, agradecemos tu comprension y esperamos verte pronto. Que tengas un excelente dia.';
+  'Hola, se han transcurrido los dias limite y no recibimos respuesta. El lugar fue asignado a otra persona porque no podemos perder ningun lugar, agradecemos tu comprension y esperamos verte pronto. Que tengas un excelente dia.';
 
 const NOT_GOING_MESSAGE =
   'Agradecemos tu respuesta a la invitacion. Lamentamos que no nos puedas acompanñar, esperamos verte pronto.';

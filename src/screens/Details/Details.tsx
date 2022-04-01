@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { Container, Text } from '@components';
@@ -78,10 +78,25 @@ function DetailsScreen({}: DetailsProps) {
             asi como respetar los protocolos de la aplicacion de gel
             antibacterial
           </Text>
-          <Text style={styles.subtitle}>VINO Y REGALOS</Text>
+          <Text style={styles.subtitle}>REGALOS</Text>
           <Text style={styles.info}>
-            No es necesario acudir con presentes para la ocacion pero por
-            motivos de logistica se recomienda traer su propia botella
+            <Text style={styles.info}>
+              Contamos con mesa de regalos en caso de ser gustoso de ayudarnos
+            </Text>
+            <Text
+              style={[styles.info, styles.bold]}
+              onPress={() => {
+                Linking.openURL(
+                  'http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857'
+                );
+              }}>
+              {' '}
+              da click aqui
+            </Text>
+          </Text>
+          <Text style={styles.subtitle}>VINO</Text>
+          <Text style={styles.info}>
+            Por motivos de logistica se recomienda traer su propia botella
           </Text>
           {!isSensible && (
             <>

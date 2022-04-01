@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     fontSize: 10,
     letterSpacing: 2,
     color: '#3c3c63'
+  },
+  separation: {
+    marginTop: 10
   }
 });
 

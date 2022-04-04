@@ -12,7 +12,7 @@ function Locations({ toggleDirections }: LocationsProps) {
   const { displayStatus } = React.useContext(DisplayContext);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, displayStatus === 2 && styles.white]}>
       <Text style={styles.label}>CEREMONIA</Text>
       <Text style={styles.locationName}>SAN ANTONIO DE PADUA</Text>
       <Text style={styles.address}>Pedro Parga 252, Centro, AGS</Text>

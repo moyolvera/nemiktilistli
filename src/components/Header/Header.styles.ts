@@ -1,6 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  qrButton: {
+    position: 'absolute',
+    left: -50,
+    top: 5,
+    width: 50,
+    height: 50
+  },
   wrapper: {
     width: '100%',
     height: 580,

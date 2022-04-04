@@ -103,7 +103,7 @@ function HomeScreen({}: HomeProps) {
           toggleAttending={toggleAttending}
           toggleQR={toggleQRModal}
         />
-        <Locations toggleDirections={toggleDirections} />
+        <Locations guest={peopleData} toggleDirections={toggleDirections} />
         <Footer
           sensible={peopleData?.sensible}
           openItinerary={toggleItinerary}

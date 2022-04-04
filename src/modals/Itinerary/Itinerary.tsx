@@ -25,9 +25,7 @@ function Itinerary({ visible, closeModal }: ItineraryProps) {
             </View>
             <View style={styles.item}>
               <Text style={styles.itemTitle}>Ceremonia Religiosa</Text>
-              <Text style={styles.itemDescription}>
-                17:00 hrs - San Antonio
-              </Text>
+              <Text style={styles.itemDescription}>17:00 hrs</Text>
             </View>
           </View>
           <View style={styles.rowWrapper}>
@@ -36,7 +34,7 @@ function Itinerary({ visible, closeModal }: ItineraryProps) {
             </View>
             <View style={styles.item}>
               <Text style={styles.itemTitle}>Recepcion/Banquete</Text>
-              <Text style={styles.itemDescription}>19:00 hrs - Tendenza</Text>
+              <Text style={styles.itemDescription}>19:00 hrs</Text>
             </View>
           </View>
           <View style={styles.rowWrapper}>
@@ -45,7 +43,7 @@ function Itinerary({ visible, closeModal }: ItineraryProps) {
             </View>
             <View style={styles.item}>
               <Text style={styles.itemTitle}>Valts/Baile</Text>
-              <Text style={styles.itemDescription}>21:00 hrs - Tendenza</Text>
+              <Text style={styles.itemDescription}>21:00 hrs</Text>
             </View>
           </View>
         </View>

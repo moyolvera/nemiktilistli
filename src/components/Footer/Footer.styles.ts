@@ -2,7 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   separate: {
-    marginBottom: 20
+    marginBottom: 20,
+    paddingBottom: 40
+  },
+  white: {
+    backgroundColor: '#fff'
   },
   wrapper: {
     flexDirection: 'row',

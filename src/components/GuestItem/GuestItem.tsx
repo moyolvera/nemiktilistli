@@ -96,6 +96,10 @@ function GuestItem({ person }: GuestItemProps) {
     return `Hola ${name}, ${MESSAGE}\n\nhttps://kenailabs.com/invitation/${token}`;
   }
 
+  function handleOnOpenChat() {
+    handleOnOpen();
+  }
+
   function handleOnSend() {
     const compoundMessage = getMessage();
     const link = `https://api.whatsapp.com/send?phone=${phone}&text=${compoundMessage}`;
@@ -153,7 +157,7 @@ function GuestItem({ person }: GuestItemProps) {
         <TouchableOpacity onPress={navigateToEdit} onLongPress={copyToken}>
           <Ionicons name="pencil" size={20} color="rgba(0,0,0,0.2)" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleOnSend}>
+        <TouchableOpacity onPress={handleOnSend} onLongPress={handleOnOpenChat}>
           <Feather
             name="send"
             size={20}

@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     padding: 14,
     alignItems: 'center'
   },
+  white: {
+    backgroundColor: '#fff'
+  },
   transparent: {
     opacity: 0
   },

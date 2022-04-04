@@ -7,16 +7,18 @@ import {
   View,
   ViewStyle
 } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 import { Text, Timer } from '@components';
 import { Feather } from '@expo/vector-icons';
 import { PeopleEntry } from '@actions/people';
+import { DisplayContext } from '@context/DisplayContext';
 
 import styles from './Header.styles';
-import { DisplayContext } from '@context/DisplayContext';
 
 interface HeaderProps {
   guest?: PeopleEntry;
   toggleAttending: () => void;
+  toggleQR: () => void;
 }
 
 interface ButtonWrapperProps {
@@ -30,7 +32,7 @@ function ButtonWrapper({ disabled, ...props }: ButtonWrapperProps) {
   return disabled ? <View {...props} /> : <TouchableOpacity {...props} />;
 }
 
-function Header({ guest, toggleAttending }: HeaderProps) {
+function Header({ guest, toggleAttending, toggleQR }: HeaderProps) {
   const { displayStatus, updateDisplayStatus } =
     React.useContext(DisplayContext);
   const [disableButton, setDisableButton] = React.useState(false);
@@ -91,14 +93,25 @@ function Header({ guest, toggleAttending }: HeaderProps) {
       {!!guest?.goodfather ? (
         <>
           <Text style={styles.like}>como</Text>
-          <Text style={styles.goodfather}>{guest?.goodfather}</Text>
+          <Text style={styles.goodfather}>{guest.goodfather}</Text>
         </>
       ) : (
         <>
-          <Timer />
+          {displayStatus === 2 ? (
+            <View>
+              {guest && (
+                <TouchableOpacity style={styles.qrButton} onPress={toggleQR}>
+                  <QRCode
+                    value={`https://kenailabs.com/invitation/${guest.token}`}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+          ) : (
+            <Timer />
+          )}
         </>
       )}
-
       {guest ? (
         <ButtonWrapper
           disabled={disableButton}

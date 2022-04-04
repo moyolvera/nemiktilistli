@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   separate: {
-    marginBottom: 20,
-    paddingBottom: 40
+    marginBottom: 0,
+    paddingBottom: 20
   },
   white: {
     backgroundColor: '#fff'

@@ -97,7 +97,8 @@ function GuestItem({ person }: GuestItemProps) {
   }
 
   function handleOnOpenChat() {
-    handleOnOpen();
+    const link = `Hola ${name}, somos Bodas Ancora, estamos ayudando a Moy y Kari con su boda, solo pasamos a saludarte y darte a conocer los detalles generales de este importante evento.`;
+    handleOnOpen(`https://api.whatsapp.com/send?phone=${phone}&text=${link}`);
   }
 
   function handleOnSend() {

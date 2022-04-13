@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     flex: 1,
     backgroundColor: '#fff'
@@ -17,11 +17,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.0)'
   },
   title: {
-    fontFamily: 'Quattrocento-Bold',
-    fontSize: 20,
-    letterSpacing: 2,
-    marginBottom: 30,
-    textTransform: 'uppercase'
+    fontFamily: 'Nunito-Regular',
+    fontSize: 24,
+    marginTop: 30,
+    marginBottom: 5
+  },
+  subtitle: {
+    fontFamily: 'Nunito-Regular',
+    marginBottom: 10,
+    maxWidth: 280,
+    textAlign: 'center'
+  },
+  qrWrapper: {},
+  guest: {
+    fontFamily: 'DancingScript-Regular',
+    fontSize: 42,
+    marginTop: 8
   }
 });
 

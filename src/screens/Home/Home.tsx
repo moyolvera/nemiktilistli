@@ -27,7 +27,6 @@ function HomeScreen({}: HomeProps) {
   const [showDirections, setShowDirections] = React.useState(false);
   const [showTutorial, setShowTutorial] = React.useState(false);
   const [showQRModal, setShowQRModal] = React.useState(false);
-  const [showGiftTable, setShowGiftTable] = React.useState(false);
   const [peopleData, setPeopleData] = React.useState<PeopleEntry>();
 
   useLogScreen({ screenName: 'Home' });
@@ -54,10 +53,6 @@ function HomeScreen({}: HomeProps) {
 
   function toggleQRModal() {
     setShowQRModal(!showQRModal);
-  }
-
-  function toggleGiftTable() {
-    setShowGiftTable(!showGiftTable);
   }
 
   function toggleInfo() {
@@ -109,7 +104,7 @@ function HomeScreen({}: HomeProps) {
           openItinerary={toggleItinerary}
           openMenu={toggleMenu}
           openInfo={toggleInfo}
-          openGiftTable={toggleGiftTable}
+          openGiftTable={toggleQRModal}
         />
       </ScrollView>
       <Itinerary visible={showItinerary} closeModal={toggleItinerary} />
@@ -117,16 +112,22 @@ function HomeScreen({}: HomeProps) {
       <Directions visible={showDirections} closeModal={toggleDirections} />
       <Tutorial visible={showTutorial} closeModal={toggleTutorial} />
       <QRModal
-        title="Invitacion"
+        name={`${peopleData?.name}`}
+        data={[
+          {
+            title: 'Confirma tu asistencia',
+            subtitle:
+              'Por favor, escanea el codigo para confirmar tu asistencia tan pronto te sea posible',
+            qrValue: `https://kenailabs.com/invitation/${peopleData?.token}`
+          },
+          {
+            title: 'Mesa de regalos',
+            qrValue:
+              'http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857'
+          }
+        ]}
         visible={showQRModal}
         closeModal={toggleQRModal}
-        qrValue={`https://kenailabs.com/invitation/${peopleData?.token}`}
-      />
-      <QRModal
-        title="Mesa de regalos"
-        visible={showGiftTable}
-        closeModal={toggleGiftTable}
-        qrValue="http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857"
       />
       {peopleData && (
         <Attending

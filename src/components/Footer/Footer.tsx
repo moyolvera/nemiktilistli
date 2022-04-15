@@ -36,7 +36,7 @@ function Footer({
         onLongPress={openGiftTable}
         onPress={() => {
           Linking.openURL(
-            'http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857'
+            'https://www.amazon.com.mx/hz/wishlist/ls/2RKK5C8IQKS0W?ref_=wl_share'
           );
         }}>
         <Text style={[styles.font]}>{` MESA DE REGALOS `}</Text>

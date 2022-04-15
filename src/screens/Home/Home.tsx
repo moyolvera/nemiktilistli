@@ -126,7 +126,7 @@ function HomeScreen({}: HomeProps) {
         title="Mesa de regalos"
         visible={showGiftTable}
         closeModal={toggleGiftTable}
-        qrValue="http://mesaderegalos.liverpool.com.mx/milistaderegalos/50860857"
+        qrValue="https://www.amazon.com.mx/hz/wishlist/ls/2RKK5C8IQKS0W?ref_=wl_share"
       />
       {peopleData && (
         <Attending

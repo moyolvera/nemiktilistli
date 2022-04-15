@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: -50,
     top: 5,
-    width: 50,
-    height: 50
+    width: 48,
+    height: 48
   },
   wrapper: {
     width: '100%',

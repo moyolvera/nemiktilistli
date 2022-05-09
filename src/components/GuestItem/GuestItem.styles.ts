@@ -25,14 +25,30 @@ const styles = StyleSheet.create({
     borderLeftColor: 'yellow',
     borderLeftWidth: 2
   },
-  person: {
+  actionWrapper: {
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.1)',
+    marginTop: 8,
+    paddingTop: 8,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  actionItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 6
+  },
+  actionText: {
+    fontFamily: 'Nunito-Regular',
+    fontSize: 12,
+    marginHorizontal: 8
+  },
+  container: {
     backgroundColor: '#fff',
     padding: 8,
     marginBottom: 16,
     borderRadius: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     shadowColor: '#6060a0',
     shadowOffset: {
       width: 0,
@@ -40,6 +56,11 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84
+  },
+  person: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   status: {
     width: 35,
@@ -58,7 +79,7 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
-    width: 50,
+    width: 20,
     justifyContent: 'space-between'
   }
 });

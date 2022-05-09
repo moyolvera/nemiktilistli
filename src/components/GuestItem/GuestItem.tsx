@@ -97,8 +97,7 @@ function GuestItem({ person }: GuestItemProps) {
   }
 
   function handleOnOpenChat() {
-    const link = `Hola ${name}, somos Bodas Ancora, estamos ayudando a Moy y Kari con su boda, solo pasamos a saludarte y darte a conocer los detalles generales de este importante evento.`;
-    handleOnOpen(`https://api.whatsapp.com/send?phone=${phone}&text=${link}`);
+    handleOnOpen(`https://api.whatsapp.com/send?phone=${phone}`);
   }
 
   function handleOnSend() {
@@ -120,9 +119,9 @@ function GuestItem({ person }: GuestItemProps) {
   }
 
   function handleOnOpen(
-    message = `https://api.whatsapp.com/send?phone=${phone}`
+    sendMessage = `https://api.whatsapp.com/send?phone=${phone}`
   ) {
-    Linking.openURL(message);
+    Linking.openURL(sendMessage);
   }
 
   function navigateToEdit() {
@@ -145,25 +144,61 @@ function GuestItem({ person }: GuestItemProps) {
     }
   }
 
+  function handleConfirmation() {
+    const confirmation = `Hola ${name}, estamos solo a 10 dias de la boda!`;
+
+    const copied = Clipboard.setString(confirmation);
+
+    if (Boolean(copied)) {
+      toast.show('Token copiado', {
+        type: 'normal',
+        duration: 800,
+        placement: 'bottom'
+      });
+
+      handleOnOpen();
+    }
+  }
+
+  const color = !!invitedOn ? 'rgba(158, 115, 255, 0.7)' : 'rgba(0,0,0,0.2)';
+
   return (
-    <View style={[styles.person, highlighStyle]}>
-      <View style={styles.status}>
-        <StatusIcon answered={answered} attending={attending} />
-      </View>
-      <TouchableOpacity style={styles.content} onPress={navigateToHome}>
-        <Text style={styles.personName}>{name}</Text>
-        <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
-      </TouchableOpacity>
-      <View style={styles.actions}>
-        <TouchableOpacity onPress={navigateToEdit} onLongPress={copyToken}>
-          <Ionicons name="pencil" size={20} color="rgba(0,0,0,0.2)" />
+    <View style={[styles.container, highlighStyle]}>
+      <View style={[styles.person]}>
+        <View style={styles.status}>
+          <StatusIcon answered={answered} attending={attending} />
+        </View>
+        <TouchableOpacity style={styles.content} onPress={navigateToHome}>
+          <Text style={styles.personName}>{name}</Text>
+          {!!message ? (
+            <Text style={styles.personEmail}>{`Mensaje: ${message}`}</Text>
+          ) : null}
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleOnSend} onLongPress={handleOnOpenChat}>
-          <Feather
-            name="send"
-            size={20}
-            color={!!invitedOn ? 'rgba(158, 115, 255, 0.7)' : 'rgba(0,0,0,0.2)'}
-          />
+        <View style={styles.actions}>
+          <TouchableOpacity onLongPress={handleOnOpenChat}>
+            <Feather name="external-link" size={20} color={color} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.actionWrapper}>
+        <TouchableOpacity
+          style={styles.actionItem}
+          onPress={navigateToEdit}
+          onLongPress={copyToken}>
+          <Text style={styles.actionText}>Editar</Text>
+          <Ionicons name="pencil" size={16} color={color} />
+        </TouchableOpacity>
+        {answered && attending && (
+          <TouchableOpacity
+            style={styles.actionItem}
+            onPress={handleConfirmation}>
+            <Text style={styles.actionText}>Confimacion</Text>
+            <Feather name="alert-triangle" size={16} color={color} />
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity style={styles.actionItem} onPress={handleOnSend}>
+          <Text style={styles.actionText}>Invitar</Text>
+          <Feather name="send" size={16} color={color} />
         </TouchableOpacity>
       </View>
     </View>

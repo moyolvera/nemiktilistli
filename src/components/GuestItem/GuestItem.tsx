@@ -146,8 +146,10 @@ function GuestItem({ person }: GuestItemProps) {
 
   function handleConfirmation() {
     const confirmation = `Hola ${name}, estamos solo a 10 dias de la boda!`;
+    const openLink = `https://api.whatsapp.com/send?phone=${phone}&text=${confirmation}`;
+    const invitation = `https://kenailabs.com/invitation/${token}`;
 
-    const copied = Clipboard.setString(confirmation);
+    const copied = Clipboard.setString(invitation);
 
     if (Boolean(copied)) {
       toast.show('Token copiado', {
@@ -156,7 +158,7 @@ function GuestItem({ person }: GuestItemProps) {
         placement: 'bottom'
       });
 
-      handleOnOpen();
+      handleOnOpen(openLink);
     }
   }
 

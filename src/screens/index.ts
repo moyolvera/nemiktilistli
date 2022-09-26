@@ -1,4 +1,5 @@
 import AddEditScreen from './AddEdit/AddEdit';
+import CommingSoonScreen from './CommingSoon/CommingSoon';
 import DetailsScreen from './Details/Details';
 import ImportScreen from './Import/Import';
 import HomeScreen from './Home/Home';
@@ -8,6 +9,7 @@ import PasswordScreen from './Password/Password';
 
 export {
   AddEditScreen,
+  CommingSoonScreen,
   DetailsScreen,
   ImportScreen,
   HomeScreen,

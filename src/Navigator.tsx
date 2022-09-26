@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native-stack';
 import {
   AddEditScreen,
+  CommingSoonScreen,
   DetailsScreen,
   ImportScreen,
   HomeScreen,
@@ -17,6 +18,7 @@ import { ManageContext } from '@context/ManageContext';
 import { PeopleEntry } from '@actions/people';
 
 export type RootStackParamList = {
+  CommingSoon: {};
   Home?: { token: string };
   AddEdit: {
     guest?: PeopleEntry;
@@ -39,6 +41,7 @@ const linking = {
   prefixes: [],
   config: {
     screens: {
+      CommingSoon: '/',
       Home: 'invitation/:token?',
       Details: 'details',
       Password: 'password',
@@ -56,6 +59,7 @@ function Navigator() {
   return (
     <NavigationContainer linking={linking}>
       <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+        <Stack.Screen name="CommingSoon" component={CommingSoonScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
